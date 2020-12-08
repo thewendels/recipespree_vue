@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Recipes</h1>
+    <h1>RECIPES</h1>
     <div v-for="recipe in recipes">
       <h1>Name: {{ recipe.name }}</h1>
       <h2>Source: {{ recipe.source }}</h2>
