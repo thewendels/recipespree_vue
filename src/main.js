@@ -8,6 +8,11 @@ axios.defaults.baseURL =
 
 Vue.config.productionTip = false;
 
+var jwt = localStorage.getItem("jwt");
+if (jwt) {
+  axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
+}
+
 new Vue({
   router,
   render: h => h(App)
