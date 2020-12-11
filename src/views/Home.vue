@@ -104,6 +104,7 @@
           <input type="text" v-model="currentRecipe.image_url">
         </p>
         <button v-on:click="updateRecipe(currentRecipe)">Update</button>
+        <button v-on:click="destroyRecipe(currentRecipe)">Delete</button>
         <button>Close</button>
       </form>
     </dialog>
@@ -202,6 +203,15 @@ export default {
           console.log("Success", response.data);
         })
         .catch(error => console.log(error.response));
+    },
+    destroyRecipe: function(recipe) {
+      axios
+        .delete("/api/recipes/" + recipe.id)
+        .then(response => {
+          console.log("Recipe deleted", response.data);
+          var index = this.recipes.indexOf(recipe);
+          this.recipes.splice(index, 1);
+        })
     }
   },
 };
