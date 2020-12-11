@@ -103,6 +103,7 @@
           Image URL: 
           <input type="text" v-model="currentRecipe.image_url">
         </p>
+        <button v-on:click="updateRecipe(currentRecipe)">Update</button>
         <button>Close</button>
       </form>
     </dialog>
@@ -180,6 +181,27 @@ export default {
     showRecipe: function(recipe) {
       this.currentRecipe = recipe;
       document.querySelector("#recipe-details").showModal();
+    },
+    updateRecipe: function(recipe) {
+      var params = {
+        name: recipe.name,
+        source: recipe.source,
+        recipe_url: recipe.recipe_url,
+        servings: recipe.servings,
+        total_prep_time: recipe.total_prep_time,
+        intro: recipe.intro,
+        ingredients: recipe.ingredients,
+        instructions: recipe.instructions,
+        notes: recipe.notes,
+        image_url: recipe.image_url,
+      };
+
+      axios
+        .patch("/api/recipes/" + recipe.id, params)
+        .then(response => {
+          console.log("Success", response.data);
+        })
+        .catch(error => console.log(error.response));
     }
   },
 };
