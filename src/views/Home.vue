@@ -57,8 +57,55 @@
       <p>Instructions: {{ recipe.instructions }}</p>
       <p>Notes: {{ recipe.notes }}</p> -->
       <img :src="`${recipe.image_url}`" />
-      <p>------</p>
+      <div>
+        <button v-on:click="showRecipe(recipe)">Show more info</button>
+      </div>
     </div>
+    <dialog id="recipe-details">
+      <form method="dialog">
+        <h1>Recipe Info</h1>
+        <p>
+          Name: <input type="text" v-model="currentRecipe.name" />
+        </p>
+        <p>
+          Source: 
+          <input type="text" v-model="currentRecipe.source">
+        </p>
+        <p>
+          Recipe URL: 
+          <input type="text" v-model="currentRecipe.recipe_url">
+        </p>
+        <p>
+          Servings: 
+          <input type="text" v-model="currentRecipe.servings">
+        </p>
+        <p>
+          Total Prep Time: 
+          <input type="text" v-model="currentRecipe.total_prep_time">
+        </p>
+        <p>
+          Intro: 
+          <input type="text" v-model="currentRecipe.intro">
+        </p>
+        <p>
+          Ingredients: 
+          <input type="text" v-model="currentRecipe.ingredients">
+        </p>
+        <p>
+          Instructions: 
+          <input type="text" v-model="currentRecipe.instructions">
+        </p>
+        <p>
+          Notes: 
+          <input type="text" v-model="currentRecipe.notes">
+        </p>
+        <p>
+          Image URL: 
+          <input type="text" v-model="currentRecipe.image_url">
+        </p>
+        <button>Close</button>
+      </form>
+    </dialog>
   </div>
 </template>
 
@@ -85,6 +132,7 @@ export default {
       newInstructions: "",
       newNotes: "",
       newImageUrl: "",
+      currentRecipe: {}
     };
   },
   created: function() {
@@ -128,6 +176,10 @@ export default {
           this.newImageUrl = "";
         })
         .catch(error => console.log(error.response));
+    },
+    showRecipe: function(recipe) {
+      this.currentRecipe = recipe;
+      document.querySelector("#recipe-details").showModal();
     }
   },
 };
