@@ -2,7 +2,11 @@
   <div class="recipes-show">
     <h2>Name: {{ recipe.name }}</h2>
     <h3>Source: {{ recipe.source }}</h3>
-    <h4>Tags: {{ recipe.tags }}</h4>
+    <div v-for="tag in recipe.tags">
+      <h4>
+        <router-link v-bind:to="`/tags/${tag.id}`">Tags: {{ tag.name }}</router-link>
+      </h4>
+    </div>
     <h4>URL: {{ recipe.recipe_url }}</h4>
     <p>Total Prep Time (in Min): {{ recipe.total_prep_time }}</p>
     <p>Intro: {{ recipe.intro }}</p>
@@ -36,6 +40,8 @@ export default {
   data: function() {
     return {
       recipe: {},
+      tag: {},
+      tags: []
     };
   },
   created: function() {
