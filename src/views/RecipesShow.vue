@@ -11,7 +11,12 @@
     <p>Notes: {{ recipe.notes }}</p>
     <img :src="`${recipe.image_url}`" v-bind:alt="recipe.name" />
     <div>
-      <router-link to="/recipes">Back to All Recipes</router-link>
+      <p>
+        <router-link v-bind:to="`/recipes/${recipe.id}/edit`">Edit Recipe</router-link>
+      </p>
+      <p>
+        <router-link to="/recipes">Back to All Recipes</router-link>
+      </p>
     </div>
   </div>
 </template>

@@ -1,56 +1,6 @@
 <template>
   <div class="home">
     <h1>Recipes</h1>
-
-    
-
-    <dialog id="recipe-details">
-      <form method="dialog">
-        <h1>Recipe Info</h1>
-        <p>
-          Name: <input type="text" v-model="currentRecipe.name" />
-        </p>
-        <p>
-          Source: 
-          <input type="text" v-model="currentRecipe.source">
-        </p>
-        <p>
-          Recipe URL: 
-          <input type="text" v-model="currentRecipe.recipe_url">
-        </p>
-        <p>
-          Servings: 
-          <input type="text" v-model="currentRecipe.servings">
-        </p>
-        <p>
-          Total Prep Time: 
-          <input type="text" v-model="currentRecipe.total_prep_time">
-        </p>
-        <p>
-          Intro: 
-          <input type="text" v-model="currentRecipe.intro">
-        </p>
-        <p>
-          Ingredients: 
-          <input type="text" v-model="currentRecipe.ingredients">
-        </p>
-        <p>
-          Instructions: 
-          <input type="text" v-model="currentRecipe.instructions">
-        </p>
-        <p>
-          Notes: 
-          <input type="text" v-model="currentRecipe.notes">
-        </p>
-        <p>
-          Image URL: 
-          <input type="text" v-model="currentRecipe.image_url">
-        </p>
-        <button v-on:click="updateRecipe(currentRecipe)">Update</button>
-        <button v-on:click="destroyRecipe(currentRecipe)">Delete</button>
-        <button>Close</button>
-      </form>
-    </dialog>
   </div>
 </template>
 
