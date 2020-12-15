@@ -47,20 +47,6 @@
     </div>
     <button v-on:click="addRecipe()">Add</button>
 
-    <div v-for="recipe in recipes">
-      <h2>Name: {{ recipe.name }}</h2>
-      <h3>Source: {{ recipe.source }}</h3>
-      <!-- <h4>URL: {{ recipe.recipe_url }}</h4>
-      <p>Total Prep Time (in Min): {{ recipe.total_prep_time }}</p>
-      <p>Intro: {{ recipe.intro }}</p>
-      <p>Ingredients: {{ recipe.ingredients }}</p>
-      <p>Instructions: {{ recipe.instructions }}</p>
-      <p>Notes: {{ recipe.notes }}</p> -->
-      <img :src="`${recipe.image_url}`" />
-      <div>
-        <button v-on:click="showRecipe(recipe)">Show more info</button>
-      </div>
-    </div>
     <dialog id="recipe-details">
       <form method="dialog">
         <h1>Recipe Info</h1>
