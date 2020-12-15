@@ -7,7 +7,7 @@
       </ul>
       <div>
         <div>
-          Name: 
+          Name*: 
           <input type="text" v-model="newName">
         </div>
         <div>
@@ -31,11 +31,11 @@
           <input type="text" v-model="newIntro">
         </div>
         <div>
-          Ingredients: 
+          Ingredients*: 
           <input type="text" v-model="newIngredients">
         </div>
         <div>
-          Instructions: 
+          Instructions*: 
           <input type="text" v-model="newInstructions">
         </div>
         <div>
