@@ -5,16 +5,8 @@
       <h2>Name: {{ recipe.name }}</h2>
       <h3>Source: {{ recipe.source }}</h3>
       <h4>Tags: {{ recipe.tags }}</h4>
-
-      <!-- <h4>URL: {{ recipe.recipe_url }}</h4>
-      <p>Total Prep Time (in Min): {{ recipe.total_prep_time }}</p>
-      <p>Intro: {{ recipe.intro }}</p>
-      <p>Ingredients: {{ recipe.ingredients }}</p>
-      <p>Instructions: {{ recipe.instructions }}</p>
-      <p>Notes: {{ recipe.notes }}</p> -->
-      <!-- <img :src="`${recipe.image_url}`" /> -->
       <div>
-        <button v-on:click="showRecipe(recipe)">Show more info</button>
+        <router-link v-bind:to="`/recipes/${recipe.id}`">More Details</router-link>
       </div>
     </div>
   </div>

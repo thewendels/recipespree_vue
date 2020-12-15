@@ -1,0 +1,43 @@
+<template>
+  <div class="recipes-show">
+    <h2>Name: {{ recipe.name }}</h2>
+    <h3>Source: {{ recipe.source }}</h3>
+    <h4>Tags: {{ recipe.tags }}</h4>
+    <h4>URL: {{ recipe.recipe_url }}</h4>
+    <p>Total Prep Time (in Min): {{ recipe.total_prep_time }}</p>
+    <p>Intro: {{ recipe.intro }}</p>
+    <p>Ingredients: {{ recipe.ingredients }}</p>
+    <p>Instructions: {{ recipe.instructions }}</p>
+    <p>Notes: {{ recipe.notes }}</p>
+    <img :src="`${recipe.image_url}`" v-bind:alt="recipe.name" />
+    <div>
+      <router-link to="/recipes">Back to All Recipes</router-link>
+    </div>
+  </div>
+</template>
+
+<style>
+img{
+  width: 400px;
+}
+</style>
+
+<script>
+import axios from "axios";
+export default {
+  data: function() {
+    return {
+      recipe: {},
+    };
+  },
+  created: function() {
+    axios
+      .get("/api/recipes/" + this.$route.params.id)
+      .then(response => {
+        console.log("recipes show", response);
+        this.recipe = response.data;
+      });
+  },
+  methods: {},
+};
+</script>

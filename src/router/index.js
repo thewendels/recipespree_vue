@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import RecipesIndex from "../views/RecipesIndex.vue";
 import RecipesNew from "../views/RecipesNew.vue";
+import RecipesShow from "../views/RecipesShow.vue";
 import Signup from '../views/Signup.vue';
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
@@ -24,6 +25,11 @@ const routes = [
     path: '/recipes/new',
     name: 'recipes-new',
     component: RecipesNew
+  },
+  {
+    path: "/recipes/:id",
+    name: "recipRecipeow",
+    component: RecipesShow,
   },
   {
     path: '/signup',
