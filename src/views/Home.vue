@@ -2,50 +2,7 @@
   <div class="home">
     <h1>Recipes</h1>
 
-    <h2>Add a Recipe</h2>
-    <div>
-      <div>
-        Name: 
-        <input type="text" v-model="newName">
-      </div>
-      <div>
-        Source: 
-        <input type="text" v-model="newSource">
-      </div>
-      <div>
-        Recipe URL: 
-        <input type="text" v-model="newRecipeUrl">
-      </div>
-      <div>
-        Servings: 
-        <input type="text" v-model="newServings">
-      </div>
-      <div>
-        Total Prep Time: 
-        <input type="text" v-model="newTotalPrepTime">
-      </div>
-      <div>
-        Intro: 
-        <input type="text" v-model="newIntro">
-      </div>
-      <div>
-        Ingredients: 
-        <input type="text" v-model="newIngredients">
-      </div>
-      <div>
-        Instructions: 
-        <input type="text" v-model="newInstructions">
-      </div>
-      <div>
-        Notes: 
-        <input type="text" v-model="newNotes">
-      </div>
-      <div>
-        Image URL: 
-        <input type="text" v-model="newImageUrl">
-      </div>
-    </div>
-    <button v-on:click="addRecipe()">Add</button>
+    
 
     <dialog id="recipe-details">
       <form method="dialog">

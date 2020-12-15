@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import RecipesIndex from "../views/RecipesIndex.vue";
+import RecipesNew from "../views/RecipesNew.vue";
 import Signup from '../views/Signup.vue';
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
@@ -18,6 +19,11 @@ const routes = [
     path: '/recipes',
     name: 'recipes-index',
     component: RecipesIndex
+  },
+  {
+    path: '/recipes/new',
+    name: 'recipes-new',
+    component: RecipesNew
   },
   {
     path: '/signup',
