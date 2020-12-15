@@ -2,9 +2,13 @@
   <div class="tags-show">
     <h2>{{ tag.name }}</h2>
     <div v-for="recipe in tag.recipes">
-      <h3>{{ recipe }}</h3>
+      <router-link v-bind:to="`/recipes/${recipe.id}`">
+        <h3>{{ recipe.name }}</h3>
+      </router-link>
     </div>
-    <router-link to="/tags">Back to All Tags</router-link>
+    <div>    
+      <router-link to="/tags">Back to All Tags</router-link>
+    </div>
   </div>
 </template>
 
