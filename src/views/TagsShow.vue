@@ -6,7 +6,13 @@
         <h3>{{ recipe.name }}</h3>
       </router-link>
     </div>
-    <div>    
+    <div> 
+      <router-link v-bind:to="`/tags/${tag.id}/edit`">Edit Tag</router-link>
+    </div>
+    <div>
+      <button v-on:click="destroyTag(tag)">Delete Tag</button>
+    </div>
+    <div>   
       <router-link to="/tags">Back to All Tags</router-link>
     </div>
   </div>
@@ -29,6 +35,13 @@ export default {
         this.tag = response.data;
       });
   },
-  methods: {},
+  methods: {
+    destroyTag: function(tag) {
+      axios.delete("/api/tags/" + tag.id).then(response => {
+        console.log("tags destroy", response);
+        this.$router.push("/tags");
+      });
+    },
+  },
 };
 </script>
