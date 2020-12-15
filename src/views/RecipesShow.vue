@@ -15,6 +15,9 @@
         <router-link v-bind:to="`/recipes/${recipe.id}/edit`">Edit Recipe</router-link>
       </p>
       <p>
+        <button v-on:click="destroyRecipe(recipe)">Delete Recipe</button>
+      </p>
+      <p>
         <router-link to="/recipes">Back to All Recipes</router-link>
       </p>
     </div>
@@ -43,6 +46,13 @@ export default {
         this.recipe = response.data;
       });
   },
-  methods: {},
+  methods: {
+    destroyRecipe: function(recipe) {
+      axios.delete("/api/recipes/" + recipe.id).then(response => {
+        console.log("recipes destroy", response);
+        this.$router.push("/recipes");
+      });
+    },
+  },
 };
 </script>
