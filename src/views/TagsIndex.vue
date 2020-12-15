@@ -2,7 +2,9 @@
   <div class="tags-index">
     <h1>All Tags</h1>
     <div v-for="tag in tags">
-      <h2>{{ tag.name }}</h2>
+      <router-link v-bind:to="`/tags/${tag.id}`">
+        <h2>{{ tag.name }}</h2>
+      </router-link>
     </div>
   </div>
 </template>
