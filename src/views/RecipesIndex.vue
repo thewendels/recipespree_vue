@@ -4,7 +4,9 @@
     <div v-for="recipe in recipes">
       <h2>Name: {{ recipe.name }}</h2>
       <h3>Source: {{ recipe.source }}</h3>
-      <h4>Tags: {{ recipe.tags }}</h4>
+      <div v-for="tag in recipe.tags">
+        <h4>Tags: {{ tag.name }}</h4>
+      </div>
       <div>
         <router-link v-bind:to="`/recipes/${recipe.id}`">More Details</router-link>
       </div>
@@ -24,6 +26,8 @@ import axios from "axios";
 export default {
   data: function() {
     return {
+      tag: {},
+      recipe: {},
       recipes: [],
     };
   },
