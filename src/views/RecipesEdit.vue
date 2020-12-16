@@ -60,7 +60,8 @@ export default {
   },
   created: function() {
     axios
-      .get("/api/recipes/" + this.$route.params.id).then(response => {
+      .get("/api/recipes/" + this.$route.params.id).
+      then(response => {
         console.log("recipes show", response);
         this.recipe = response.data;
       });
@@ -83,7 +84,7 @@ export default {
         .patch("/api/recipes/" + recipe.id, params)
         .then(response => {
           console.log("recipes update", response);
-          this.$router.push("/recipes");
+          this.$router.push("/recipes/" + this.$route.params.id);
         })
         .catch(error => {
           console.log("recipes update error", error.response);
