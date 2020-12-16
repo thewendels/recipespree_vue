@@ -54,10 +54,12 @@ export default {
   },
   methods: {
     destroyRecipe: function(recipe) {
-      axios.delete("/api/recipes/" + recipe.id).then(response => {
-        console.log("recipes destroy", response);
-        this.$router.push("/recipes");
-      });
+      axios
+        .delete("/api/recipes/" + recipe.id)
+        .then(response => {
+          console.log("recipes destroy", response);
+          this.$router.push("/recipes");
+        });
     },
   },
 };
