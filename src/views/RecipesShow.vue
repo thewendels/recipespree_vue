@@ -2,10 +2,11 @@
   <div class="recipes-show">
     <h2>Name: {{ recipe.name }}</h2>
     <h3>Source: {{ recipe.source }}</h3>
+    <h4>Tags</h4>
     <div v-for="tag in recipe.tags">
-      <h4>
-        <router-link v-bind:to="`/tags/${tag.id}`">Tags: {{ tag.name }}</router-link>
-      </h4>
+      <h5>
+        <router-link v-bind:to="`/tags/${tag.id}`">{{ tag.name }}</router-link>
+      </h5>
       <button v-on:click="destroyRecipeTag(tag)">Delete Tag</button>
     </div>
     <div>
