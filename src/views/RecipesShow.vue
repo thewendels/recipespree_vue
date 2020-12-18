@@ -6,6 +6,7 @@
       <h4>
         <router-link v-bind:to="`/tags/${tag.id}`">Tags: {{ tag.name }}</router-link>
       </h4>
+      <button v-on:click="destroyRecipeTag(tag)">Delete Tag</button>
     </div>
     <div>
       <button v-on:click="showTagInput()" v-if="tagFieldAppear !== true">Add Tag</button>
@@ -90,6 +91,18 @@ export default {
           console.log("recipes create error", error.response);
           this.errors = error.response.data.errors;
         });
+    },
+    destroyRecipeTag: function(tag) {
+      var params = {
+        recipe_id: this.recipe.id,
+        tag_id: tag.id
+      }
+      axios
+        .delete("/api/recipe_tags/", { data: params })
+        .then(response => {
+          console.log("recipetags destroy",response.data);
+          this.recipe = response.data;
+        })
     },
     destroyRecipe: function(recipe) {
       axios
