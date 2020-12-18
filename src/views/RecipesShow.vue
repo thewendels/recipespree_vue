@@ -12,7 +12,6 @@
     </div>
     <div>
       <button v-on:click="showTagInput()" v-if="tagFieldAppear !== true">Add Tag</button>
-
       <form v-if="tagFieldAppear === true" v-on:submit.prevent="createRecipeTag()">
         <ul>
           <li v-for="error in errors">{{ error }}</li>
@@ -26,10 +25,10 @@
       </form>
     </div>
     <p v-if="recipe.total_prep_time !== null">Total Prep Time (in Min): {{ recipe.total_prep_time }}</p>
-    <p v-if="recipe.intro !== null">Intro: {{ recipe.intro }}</p>
+    <p v-if="recipe.intro !== '' ">Intro: {{ recipe.intro }}</p>
     <p>Ingredients: {{ recipe.ingredients }}</p>
     <p>Instructions: {{ recipe.instructions }}</p>
-    <p v-if="recipe.notes !== null">Notes: {{ recipe.notes }}</p>
+    <p v-if="recipe.notes !== '' ">Notes: {{ recipe.notes }}</p>
     <img :src="`${recipe.image_url}`" v-bind:alt="recipe.name" />
     <div>
       <p>
