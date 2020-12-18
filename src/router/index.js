@@ -8,6 +8,7 @@ import RecipesEdit from "../views/RecipesEdit.vue";
 import TagsIndex from "../views/TagsIndex.vue";
 import TagsShow from "../views/TagsShow.vue";
 import TagsEdit from "../views/TagsEdit.vue";
+import UsersShow from "../views/UsersShow.vue";
 import Signup from '../views/Signup.vue';
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
@@ -54,6 +55,11 @@ const routes = [
     path: "/tags/:id/edit",
     name: "tags-edit",
     component: TagsEdit,
+  },
+  {
+    path: "/users",
+    name: "users-show",
+    component: UsersShow,
   },
   {
     path: '/signup',
