@@ -6,7 +6,10 @@
         <li v-for="error in errors">{{ error }}</li>
       </ul>
       Name: <input type="text" v-model="tag.name" />
-      <input type="submit" value="Update" />
+      <div>
+        <router-link v-bind:to="`/tags/${this.$route.params.id}`">Back to Tag Page</router-link>
+        <input type="submit" value="Update" />
+      </div>
     </form>
   </div>
 </template>

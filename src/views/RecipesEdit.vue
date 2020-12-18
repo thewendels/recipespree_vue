@@ -44,7 +44,10 @@
           Image URL: 
           <input type="text" v-model="recipe.image_url">
         </p>
-      <input type="submit" value="Update" />
+      <div>
+        <router-link v-bind:to="`/recipes/${this.$route.params.id}`">Back to Recipe</router-link>
+        <input type="submit" value="Update" />
+      </div>
     </form>
   </div>
 </template>

@@ -17,7 +17,10 @@
       <p>
         Confirm Password: <input type="password" v-model="user.password_confirmation" />
       </p>
-      <input type="submit" value="Update" />
+      <div>
+        <router-link to="/users">Back to Profile</router-link>
+        <input type="submit" value="Update" />
+      </div>
     </form>
   </div>
 </template>
