@@ -7,14 +7,14 @@
       <h3>Password: ********** </h3>
     </div>
     <div>
-      <!-- <p>
-        <router-link v-bind:to="`/users/${current_user.id}/edit`">Edit Profile</router-link>
-      </p> -->
+      <p>
+        <router-link v-bind:to="`/users/edit`">Edit Profile</router-link>
+      </p>
       <!-- <p>
         <button v-on:click="destroyUser(user)">Delete Account</button>
       </p> -->
       <p>
-        <router-link to="/recipes">Back to All Recipes</router-link>
+        <router-link to="/recipes">Home</router-link>
       </p>
     </div>
   </div>
