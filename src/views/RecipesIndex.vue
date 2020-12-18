@@ -4,8 +4,9 @@
     <div v-for="recipe in recipes">
       <h2>Name: {{ recipe.name }}</h2>
       <h3>Source: {{ recipe.source }}</h3>
+      <h4 v-if="recipe.tags.length !== 0">Tags</h4>
       <div v-for="tag in recipe.tags">
-        <h4>Tags: {{ tag.name }}</h4>
+        <h5>{{ tag.name }}</h5>
       </div>
       <div>
         <router-link v-bind:to="`/recipes/${recipe.id}`">More Details</router-link>
