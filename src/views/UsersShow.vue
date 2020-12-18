@@ -10,9 +10,9 @@
       <p>
         <router-link v-bind:to="`/users/edit`">Edit Profile</router-link>
       </p>
-      <!-- <p>
+      <p>
         <button v-on:click="destroyUser(user)">Delete Account</button>
-      </p> -->
+      </p>
       <p>
         <router-link to="/recipes">Home</router-link>
       </p>
@@ -36,6 +36,16 @@ export default {
         this.user = response.data;
       });
   },
-  methods: {},
+  methods: {
+    destroyUser: function(user) {
+      axios
+        .delete("/api/users/")
+        .then(response => {
+          console.log("users destroy", response);
+          localStorage.removeItem("jwt");
+          this.$router.push("/signup");
+        });
+    },
+  },
 };
 </script>
