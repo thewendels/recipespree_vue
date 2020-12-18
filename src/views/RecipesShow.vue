@@ -1,7 +1,8 @@
 <template>
   <div class="recipes-show">
     <h2>Name: {{ recipe.name }}</h2>
-    <h3>Source: {{ recipe.source }}</h3>
+    <a v-if="recipe.recipe_url" :href="recipe.recipe_url" target="_blank"><h3>Source: {{ recipe.source }}</h3></a>
+    <h3 v-else>Source: {{ recipe.source }}</h3>
     <h4>Tags</h4>
     <div v-for="tag in recipe.tags">
       <h5>
@@ -24,12 +25,11 @@
         </div>
       </form>
     </div>
-    <h4>URL: {{ recipe.recipe_url }}</h4>
-    <p>Total Prep Time (in Min): {{ recipe.total_prep_time }}</p>
-    <p>Intro: {{ recipe.intro }}</p>
+    <p v-if="recipe.total_prep_time !== null">Total Prep Time (in Min): {{ recipe.total_prep_time }}</p>
+    <p v-if="recipe.intro !== null">Intro: {{ recipe.intro }}</p>
     <p>Ingredients: {{ recipe.ingredients }}</p>
     <p>Instructions: {{ recipe.instructions }}</p>
-    <p>Notes: {{ recipe.notes }}</p>
+    <p v-if="recipe.notes !== null">Notes: {{ recipe.notes }}</p>
     <img :src="`${recipe.image_url}`" v-bind:alt="recipe.name" />
     <div>
       <p>
