@@ -45,7 +45,7 @@
           <input type="text" v-model="recipe.image_url">
         </p>
       <div>
-        <router-link v-bind:to="`/recipes/${this.$route.params.id}`">Back to Recipe</router-link>
+        <router-link v-bind:to="`/recipes/${this.$route.params.id}`">Cancel</router-link>
         <input type="submit" value="Update" />
       </div>
     </form>

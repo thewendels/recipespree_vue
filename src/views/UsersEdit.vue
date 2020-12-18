@@ -18,7 +18,7 @@
         Confirm Password: <input type="password" v-model="user.password_confirmation" />
       </p>
       <div>
-        <router-link to="/users">Back to Profile</router-link>
+        <router-link to="/users">Cancel</router-link>
         <input type="submit" value="Update" />
       </div>
     </form>

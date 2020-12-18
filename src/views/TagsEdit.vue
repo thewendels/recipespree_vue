@@ -7,7 +7,7 @@
       </ul>
       Name: <input type="text" v-model="tag.name" />
       <div>
-        <router-link v-bind:to="`/tags/${this.$route.params.id}`">Back to Tag Page</router-link>
+        <router-link v-bind:to="`/tags/${this.$route.params.id}`">Cancel</router-link>
         <input type="submit" value="Update" />
       </div>
     </form>
