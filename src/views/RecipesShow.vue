@@ -26,7 +26,10 @@
     </div>
     <p v-if="recipe.total_prep_time !== null">Total Prep Time: {{ recipe.friendly_prep_time }}</p>
     <p v-if="recipe.intro !== '' ">Intro: {{ recipe.intro }}</p>
-    <p>Ingredients: {{ recipe.ingredients }}</p>
+    <p>Ingredients:</p>
+    <ul v-for="ingredient in recipe.stepped_ingredients">
+      <li>{{ ingredient }}</li>
+    </ul>
     <p>Instructions: {{ recipe.instructions }}</p>
     <p v-if="recipe.notes !== '' ">Notes: {{ recipe.notes }}</p>
     <img :src="`${recipe.image_url}`" v-bind:alt="recipe.name" />
