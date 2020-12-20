@@ -23,7 +23,7 @@
           <input type="text" v-model="newServings">
         </div>
         <div>
-          Total Prep Time: 
+          Total Prep Time (in Minutes): 
           <input type="text" v-model="newTotalPrepTime">
         </div>
         <div>

@@ -24,7 +24,7 @@
         </div>
       </form>
     </div>
-    <p v-if="recipe.total_prep_time !== null">Total Prep Time (in Min): {{ recipe.total_prep_time }}</p>
+    <p v-if="recipe.total_prep_time !== null">Total Prep Time: {{ recipe.friendly_prep_time }}</p>
     <p v-if="recipe.intro !== '' ">Intro: {{ recipe.intro }}</p>
     <p>Ingredients: {{ recipe.ingredients }}</p>
     <p>Instructions: {{ recipe.instructions }}</p>
