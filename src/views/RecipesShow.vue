@@ -30,7 +30,10 @@
     <ul v-for="ingredient in recipe.stepped_ingredients">
       <li>{{ ingredient }}</li>
     </ul>
-    <p>Instructions: {{ recipe.instructions }}</p>
+    <p>Instructions:</p>
+    <div v-for="instruction in recipe.stepped_instructions">
+      <p>{{ instruction }}</p>
+    </div>
     <p v-if="recipe.notes !== '' ">Notes: {{ recipe.notes }}</p>
     <img :src="`${recipe.image_url}`" v-bind:alt="recipe.name" />
     <div>
