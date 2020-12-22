@@ -23,7 +23,10 @@
           <div>
             Tag Name: <input type="text" v-model="tagName" />
           </div>
-          <input type="submit" value="Add Tag" />
+          <div>
+            <button v-on:click="showTagInput()">Cancel</button>
+            <input type="submit" value="Add Tag" />
+          </div>
         </div>
       </form>
     </div>
