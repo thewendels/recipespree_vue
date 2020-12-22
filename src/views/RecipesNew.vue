@@ -49,6 +49,17 @@
       </div>
       <input type="submit" value="Create" />
     </form>
+    <h4>or</h4>
+    <div>
+      <form v-on:submit.prevent="scrapeRecipe()">
+        <h3>Import Recipe with URL</h3>
+        <div>
+          Recipe URL: 
+          <input type="text" v-model="recipeUrl">
+        </div>
+        <input type="submit" value="Import" />
+      </form>
+    </div>
   </div>
 </template>
 
@@ -67,6 +78,7 @@ export default {
       newInstructions: "",
       newNotes: "",
       newImageUrl: "",
+      recipeUrl:"",
       errors: [],
     };
   },
@@ -90,6 +102,22 @@ export default {
         .post("/api/recipes", params)
         .then(response => {
           console.log("recipes create", response.data);
+          this.$router.push("/recipes");
+        })
+        .catch(error => {
+          console.log("recipes create error", error.response);
+          this.errors = error.response.data.errors;
+        });
+    },
+    scrapeRecipe: function() {
+      var params = {
+        url: this.recipeUrl,
+      };
+
+      axios 
+        .post("/api/recipes/scrape", params)
+        .then(response => {
+          console.log("recipes scrape", response.data);
           this.$router.push("/recipes");
         })
         .catch(error => {

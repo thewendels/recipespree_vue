@@ -34,7 +34,7 @@
     <div v-for="instruction in recipe.stepped_instructions">
       <p>{{ instruction }}</p>
     </div>
-    <p v-if="recipe.notes !== '' ">Notes: {{ recipe.notes }}</p>
+    <p v-if="recipe.notes !== '' && recipe.notes !== null">Notes: {{ recipe.notes }}</p>
     <img :src="`${recipe.image_url}`" v-bind:alt="recipe.name" />
     <div>
       <p>
