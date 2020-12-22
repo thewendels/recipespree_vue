@@ -24,8 +24,8 @@
         </div>
       </form>
     </div>
-    <p v-if="recipe.total_prep_time !== null">Total Prep Time: {{ recipe.friendly_prep_time }}</p>
-    <p v-if="recipe.intro !== '' ">Intro: {{ recipe.intro }}</p>
+    <p v-if="recipe.total_prep_time">Total Prep Time: {{ recipe.friendly_prep_time }}</p>
+    <p v-if="recipe.intro">Intro: {{ recipe.intro }}</p>
     <p>Ingredients:</p>
     <ul v-for="ingredient in recipe.stepped_ingredients">
       <li>{{ ingredient }}</li>
@@ -34,7 +34,7 @@
     <div v-for="instruction in recipe.stepped_instructions">
       <p>{{ instruction }}</p>
     </div>
-    <p v-if="recipe.notes !== '' && recipe.notes !== null">Notes: {{ recipe.notes }}</p>
+    <p v-if="recipe.notes">Notes: {{ recipe.notes }}</p>
     <img :src="`${recipe.image_url}`" v-bind:alt="recipe.name" />
     <div>
       <p>

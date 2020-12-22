@@ -1,6 +1,7 @@
 <template>
   <div class="recipes-new">
     <h1>Add a Recipe</h1>
+    <h3>Add Manually</h3>
     <form v-on:submit.prevent="createRecipe()">
       <ul>
         <li v-for="error in errors">{{ error }}</li>
@@ -49,7 +50,7 @@
       </div>
       <input type="submit" value="Create" />
     </form>
-    <h4>or</h4>
+    <h5>or</h5>
     <div>
       <form v-on:submit.prevent="scrapeRecipe()">
         <h3>Import Recipe with URL</h3>
