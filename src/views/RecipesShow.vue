@@ -1,8 +1,11 @@
+/* eslint-disable vue/no-dupe-v-else-if */
 <template>
   <div class="recipes-show">
     <h2>Name: {{ recipe.name }}</h2>
-    <a v-if="recipe.recipe_url" :href="recipe.recipe_url" target="_blank"><h3>Source: {{ recipe.source }}</h3></a>
-    <h3 v-else>Source: {{ recipe.source }}</h3>
+    <a v-if="recipe.recipe_url && recipe.source" :href="recipe.recipe_url" target="_blank"><h3>Source: {{ recipe.source }}</h3></a>
+    <a v-else-if="!recipe.source && recipe.recipe_url" :href="recipe.recipe_url" target="_blank"><h3>Source: {{ recipe.recipe_url }}</h3></a>
+    <h3 v-else-if="!recipe.recipe_url && recipe.source">Source: {{ recipe.source }}</h3>
+
     <h4>Tags</h4>
     <div v-for="tag in recipe.tags">
       <h5>
