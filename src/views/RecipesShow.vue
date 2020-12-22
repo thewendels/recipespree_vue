@@ -92,6 +92,7 @@ export default {
           console.log("recipetags create", response.data);
           this.recipe = response.data;
           this.tagName = "";
+          this.tagFieldAppear = false;
         })
         .catch(error => {
           console.log("recipes create error", error.response);
