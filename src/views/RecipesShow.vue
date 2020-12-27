@@ -14,22 +14,28 @@
       <button v-on:click="destroyRecipeTag(tag)">Delete Tag</button>
     </div>
     <div>
-      <button v-on:click="showTagInput()" v-if="tagFieldAppear !== true">Add Tag</button>
-      <form v-if="tagFieldAppear === true" v-on:submit.prevent="createRecipeTag()">
+      <button v-on:click="showTagManager()" v-if="tagManagerAppear !== true">Add Tag</button>
+      <form v-if="tagManagerAppear === true" v-on:submit.prevent="createRecipeTag()">
         <ul>
           <li v-for="error in errors">{{ error }}</li>
         </ul>
         <div>
-          <div>
-            Tag Name: <input type="text" v-model="tagName" />
+          <select v-model.lazy="tagName">
+            <option disabled value="">Select a tag:</option>
+            <option value="userInputNew">Create new tag</option>
+            <option :value="`${tag.name}`" v-for="tag in tags">{{ tag.name }}</option>
+          </select>
+          <div v-if="tagName === 'userInputNew'">
+            Tag Name: <input type="text" v-model="tagInput" />
           </div>
           <div>
-            <button v-on:click="showTagInput()">Cancel</button>
-            <input type="submit" value="Add Tag" />
+            <button v-on:click="showTagManager()">Cancel</button>
+            <input type="submit" value="Submit" />
           </div>
         </div>
       </form>
     </div>
+
     <p v-if="recipe.total_prep_time">Total Prep Time: {{ recipe.friendly_prep_time }}</p>
     <p v-if="recipe.intro">Intro: {{ recipe.intro }}</p>
     <p>Ingredients:</p>
@@ -70,9 +76,10 @@ export default {
       recipe: {},
       tag: {},
       tags: [],
-      tagFieldAppear: false,
+      tagManagerAppear: false,
       tagName: "",
-      errors: []
+      tagInput: "",
+      errors: [],
     };
   },
   created: function() {
@@ -82,14 +89,27 @@ export default {
         console.log("recipes show", response);
         this.recipe = response.data;
       });
+    axios
+      .get("/api/tags/")
+      .then(response => {
+        console.log("tags show", response);
+        this.tags = response.data;
+      });
   },
   methods: {
-    showTagInput: function() {
-      this.tagFieldAppear = !(this.tagFieldAppear);
+    showTagManager: function() {
+      this.tagManagerAppear = !(this.tagManagerAppear);
+      this.tagName = "";
     },
     createRecipeTag: function() {
+      let tag;
+      if (this.tagName === "userInputNew") {
+        tag = this.tagInput;
+      } else {
+        tag = this.tagName;
+      }
       var params = {
-        tag_name: this.tagName,
+        tag_name: tag,
         recipe_id: this.recipe.id,
       };
       axios 
@@ -98,7 +118,7 @@ export default {
           console.log("recipetags create", response.data);
           this.recipe = response.data;
           this.tagName = "";
-          this.tagFieldAppear = false;
+          this.tagManagerAppear = false;
         })
         .catch(error => {
           console.log("recipes create error", error.response);
