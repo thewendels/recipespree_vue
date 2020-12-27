@@ -9,36 +9,25 @@
       to="/users">Profile</router-link> | 
       <router-link v-if="!isLoggedIn()" to="/signup">Sign Up</router-link> |  
       <router-link v-if="!isLoggedIn()" to="/login">Log In</router-link> | <router-link v-if="isLoggedIn()" to="/logout">Log Out</router-link>
+      <form v-on:submit.prevent="searchRecipes()"> 
+        <input type="text" v-model="search">
+        <input type="submit" value="Search" />
+      </form>
     </div>
     <router-view/>
   </div>
 </template>
 
 <style>
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-} */
 </style>
 
 <script>
 export default {
+  data: function() {
+    return {
+      search: "",
+    }   
+  },
   methods: {
     isLoggedIn: function() {
       if (localStorage.getItem("jwt")) {
@@ -46,6 +35,10 @@ export default {
       } else {
         return false;
       }
+    },
+    searchRecipes() {
+      this.$router.push({ path: 'recipes', query: { search: this.search }});
+      this.search = "";
     }
   }
 };

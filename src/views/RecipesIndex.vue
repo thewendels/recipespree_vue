@@ -44,8 +44,15 @@ export default {
   },
   mixins: [Vue2Filters.mixin],
   created: function() {
+    let path;
+    if (this.$route.query.search) {
+      path = "/api/recipes?search=" + this.$route.query.search;
+    }
+    else {
+      path = "/api/recipes";
+    }
     axios
-      .get("/api/recipes")
+      .get(path)
       .then(response => {
         console.log("recipes index", response);
         this.recipes = response.data;
@@ -70,6 +77,23 @@ export default {
         return "";
       }    
     },
+  },
+  watch: {
+    $route: function(to, from) {
+      let path;
+      if (to.query.search) {
+        path = "/api/recipes?search=" + to.query.search;
+      }
+      else {
+        path = "/api/recipes";
+      }
+      axios
+        .get(path)
+        .then(response => {
+          console.log("recipes index", response);
+          this.recipes = response.data;
+        });
+    }
   },
   methods: {
   },
