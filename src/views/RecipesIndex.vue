@@ -83,8 +83,7 @@ export default {
       let path;
       if (to.query.search) {
         path = "/api/recipes?search=" + to.query.search;
-      }
-      else {
+      } else {
         path = "/api/recipes";
       }
       axios

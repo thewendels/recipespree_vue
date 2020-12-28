@@ -20,12 +20,12 @@
           <li v-for="error in errors">{{ error }}</li>
         </ul>
         <div>
-          <select v-model.lazy="tagName">
+          <select v-model.lazy="dropdownSelection">
             <option disabled value="">Select a tag:</option>
             <option value="userInputNew">Create new tag</option>
             <option :value="`${tag.name}`" v-for="tag in tags">{{ tag.name }}</option>
           </select>
-          <div v-if="tagName === 'userInputNew'">
+          <div v-if="dropdownSelection === 'userInputNew'">
             Tag Name: <input type="text" v-model="tagInput" />
           </div>
           <div>
@@ -77,7 +77,7 @@ export default {
       tag: {},
       tags: [],
       tagManagerAppear: false,
-      tagName: "",
+      dropdownSelection: "",
       tagInput: "",
       errors: [],
     };
@@ -99,14 +99,14 @@ export default {
   methods: {
     showTagManager: function() {
       this.tagManagerAppear = !(this.tagManagerAppear);
-      this.tagName = "";
+      this.dropdownSelection = "";
     },
     createRecipeTag: function() {
       let tag;
-      if (this.tagName === "userInputNew") {
+      if (this.dropdownSelection === "userInputNew") {
         tag = this.tagInput;
       } else {
-        tag = this.tagName;
+        tag = this.dropdownSelection;
       }
       var params = {
         tag_name: tag,
@@ -117,7 +117,7 @@ export default {
         .then(response => {
           console.log("recipetags create", response.data);
           this.recipe = response.data;
-          this.tagName = "";
+          this.dropdownSelection = "";
           this.tagManagerAppear = false;
         })
         .catch(error => {
