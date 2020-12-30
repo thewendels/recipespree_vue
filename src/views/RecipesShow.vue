@@ -5,7 +5,18 @@
     <a v-if="recipe.recipe_url && recipe.source" :href="recipe.recipe_url" target="_blank"><h3>Source: {{ recipe.source }}</h3></a>
     <a v-else-if="!recipe.source && recipe.recipe_url" :href="recipe.recipe_url" target="_blank"><h3>Source: {{ recipe.recipe_url }}</h3></a>
     <h3 v-else-if="!recipe.recipe_url && recipe.source">Source: {{ recipe.source }}</h3>
-
+    <img :src="`${recipe.image_url}`" v-bind:alt="recipe.name" />
+    <div>
+      <p>
+        <router-link v-bind:to="`/recipes/${recipe.id}/edit`">Edit Recipe</router-link>
+      </p>
+      <p>
+        <button v-on:click="destroyRecipe(recipe)">Delete Recipe</button>
+      </p>
+      <p>
+        <router-link to="/recipes">Back to All Recipes</router-link>
+      </p>
+    </div>
     <h4>Tags</h4>
     <div v-for="tag in recipe.tags">
       <h5>
@@ -47,18 +58,6 @@
       <p>{{ instruction }}</p>
     </div>
     <p v-if="recipe.notes">Notes: {{ recipe.notes }}</p>
-    <img :src="`${recipe.image_url}`" v-bind:alt="recipe.name" />
-    <div>
-      <p>
-        <router-link v-bind:to="`/recipes/${recipe.id}/edit`">Edit Recipe</router-link>
-      </p>
-      <p>
-        <button v-on:click="destroyRecipe(recipe)">Delete Recipe</button>
-      </p>
-      <p>
-        <router-link to="/recipes">Back to All Recipes</router-link>
-      </p>
-    </div>
   </div>
 </template>
 

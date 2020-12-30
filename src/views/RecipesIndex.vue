@@ -1,5 +1,6 @@
 <template>
   <div class="recipes-index">
+    <h4 v-if="this.$route.query.search">Search results for: {{ this.$route.query.search }}</h4>
     <h1>All Recipes</h1>
     <h4>Sort</h4>
     <select v-model.lazy="selected">
@@ -10,14 +11,11 @@
       <option value="oldest">Oldest</option>
     </select>
     <div v-for="recipe in orderBy(recipes, sortKey, sortOrder)">
-      <h2>Name: {{ recipe.name }}</h2>
+      <h2><router-link v-bind:to="`/recipes/${recipe.id}`">Name: {{ recipe.name }}</router-link></h2>
       <h3>Source: {{ recipe.source }}</h3>
       <h4 v-if="recipe.tags.length !== 0">Tags</h4>
       <div v-for="tag in recipe.tags">
-        <h5>{{ tag.name }}</h5>
-      </div>
-      <div>
-        <router-link v-bind:to="`/recipes/${recipe.id}`">More Details</router-link>
+        <h5><router-link v-bind:to="`/tags/${tag.id}`">{{ tag.name }}</router-link></h5>
       </div>
     </div>
   </div>
@@ -37,6 +35,7 @@ export default {
   data: function() {
     return {
       tag: {},
+      tags: [],
       recipe: {},
       recipes: [],
       selected: "",
@@ -56,6 +55,12 @@ export default {
       .then(response => {
         console.log("recipes index", response);
         this.recipes = response.data;
+      });
+    axios
+      .get("/api/tags")
+      .then(response => {
+        console.log("tags index", response);
+        this.tags = response.data;
       });
   },
   computed: {
