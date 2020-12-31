@@ -11,27 +11,26 @@
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light justify-content-lg-between justify-content-md-inherit pt-2 pb-2 shadow-md border rounded bg-light">
-
-      <!-- Logo -->
-      <div class="align-items-start">
-        <router-link class="navbar-brand" to="/recipes">
+      <div class="align-items-center d-flex justify-content-start">
+        <!-- Logo -->
+        <router-link class="navbar-brand mr-0" to="/recipes">
           <img src="/assets/images/logo/rs_monogram.png" alt="RecipeSpree" style="object-fit:contain">
         </router-link>
+        <!-- Links -->
+        <ul class="nav collapse navbar-collapse navbar-animate-fadein">
+          <li class="nav-item">
+            <router-link class="nav-link" to="/recipes">All Recipes</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/recipes/new">Add a Recipe</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/tags">All Tags</router-link>
+          </li>
+        </ul>
       </div>
       
-      <!-- Links -->
-      <ul class="nav collapse navbar-collapse navbar-animate-fadein">
-        <li class="nav-item">
-          <router-link class="nav-link" to="/recipes">All Recipes</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" to="/recipes/new">Add a Recipe</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" to="/tags">All Tags</router-link>
-        </li>
-      </ul>
-
+  
       <!-- Search and Account -->
       <ul class="list-inline list-unstyled mb-0 d-flex align-items-center">
           <!-- Search -->
@@ -44,7 +43,7 @@
           <ul class="list-inline list-unstyled mb-0 d-flex align-items-end mr-2">
             <li class="list-inline-item mx-1 dropdown">
 
-              <a href="#" aria-label="Account Options" id="dropdownAccountOptions" class="btn btn-sm rounded-circle btn-primary btn-soft-static" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+              <a href="#" aria-label="Account Options" id="dropdownAccountOptions" class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
                 <span class="group-icon">
                   <i class="fi fi-user-male"></i>
                   <i class="fi fi-close"></i>
@@ -65,10 +64,19 @@
         </ul>
 		</nav>
 
-    <!-- Citrus banner -->
+    <!-- Citrus banner top -->
     <section class="bg-theme-color-light p-0 rounded" style="background-image:url(/assets/images/citrus.jpg); background-size:cover; height:150px"></section>				
     
     <router-view/>
+
+    <!-- Citrus banner bottom-->
+    <section class="bg-theme-color-light p-0 rounded" style="background-image:url(/assets/images/citrus2.jpg); background-size:cover; height:150px"></section>	
+
+    <!-- Footer -->
+    <footer class="pt-2 pb-2 shadow-md border rounded bg-light d-flex align-items-center justify-content-center">
+      <p style="font-size:0.5rem">© RecipeSpree. Design: Smartly.</p>
+    </footer>
+
   </div>
 </template>
 

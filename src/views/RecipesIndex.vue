@@ -3,11 +3,11 @@
 
     <!-- Title and Sort -->
     <section class="bg-theme-color-light p-0">
-      <div class="container py-3">
-        <h1 class="h3">
+      <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
+        <h1 class="h3 mb-0">
           All Recipes
         </h1>
-        <div class="d-flex justify-content-end mb-3">
+        <div class="d-flex">
           <h6 class="m-2">Sort:</h6>
           <select v-model.lazy="selected" class="px-2 rounded">
             <option value="newest"> Newest </option>
@@ -19,11 +19,10 @@
       </div>
 		</section>
 
-    <!-- Search Results -->
-    <p v-if="this.$route.query.search">Search results for: "{{ this.$route.query.search }}"</p>
-
     <!-- Cards -->
     <div class="container">
+      <!-- Search Results -->
+      <p v-if="this.$route.query.search">Search results for: "{{ this.$route.query.search }}"</p>
       <div class="row">
         <div class="col-12 col-lg-4 mb-4" v-for="recipe in orderBy(recipes, sortKey, sortOrder)">
           <div class="card b-0 shadow-primary-xs shadow-primary-md-hover transition-all-ease-250 transition-hover-top h3-100 rounded overflow-hidden h-100">
