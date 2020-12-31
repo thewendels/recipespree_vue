@@ -2,7 +2,7 @@
   <div class="recipes-index">
 
     <!-- Title and Sort -->
-    <section class="bg-theme-color-light p-0">
+    <section class="bg-theme-color-light p-0 rounded">
       <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
         <h1 class="h3 mb-0">
           All Recipes
@@ -12,8 +12,8 @@
           <select v-model.lazy="selected" class="px-2 rounded">
             <option value="newest"> Newest </option>
             <option value="oldest"> Oldest </option>
-            <option value="alpha"> A-Z </option>
-            <option value="revAlpha"> Z-A </option>
+            <option value="alpha"> A - Z </option>
+            <option value="revAlpha"> Z - A </option>
           </select>
         </div>
       </div>
