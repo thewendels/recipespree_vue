@@ -25,12 +25,10 @@
             <div class="clearfix">
               <img class="" :src="`${recipe.image_url}`" alt="...">
             </div>
-            <div class="card-body font-weight-light mt--60">
-              <h2 class="h5 card-title mb-4"><router-link v-bind:to="`/recipes/${recipe.id}`">{{ recipe.name }}</router-link></h2>
-              <p class="lead">{{ recipe.source }}</p>
-              <span class="float-end fs--14 text-gray-500 p-2" v-if="recipe.tags.length !== 0" v-for="tag in recipe.tags">
-                <router-link class="btn btn-outline-secondary btn-pill mb-1" v-bind:to="`/tags/${tag.id}`">{{ tag.name }}</router-link>
-              </span>
+            <div class="card-body font-weight-light">
+              <h5><router-link v-bind:to="`/recipes/${recipe.id}`">{{ recipe.name }}</router-link></h5>
+              <p>{{ recipe.source }}</p>
+              <router-link v-if="recipe.tags.length !== 0" v-for="tag in recipe.tags" class="btn btn-sm btn-outline-secondary btn-pill mb-1 mr-1 ml-0" v-bind:to="`/tags/${tag.id}`" :key="tag.id">{{ tag.name }}</router-link>
             </div>
           </div>
         </div>
