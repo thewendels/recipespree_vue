@@ -14,7 +14,9 @@
 
       <!-- Logo -->
       <div class="align-items-start">
-        <router-link class="navbar-brand" to="/recipes">MONOGRAM</router-link>
+        <router-link class="navbar-brand" to="/recipes">
+          <img src="/assets/images/logo/rs_monogram.png" alt="RecipeSpree" style="object-fit:contain">
+        </router-link>
       </div>
       
       <!-- Links -->

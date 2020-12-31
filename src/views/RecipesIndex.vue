@@ -1,11 +1,11 @@
 <template>
   <div class="recipes-index">
 
-    <!-- Search results -->
-    <h4 v-if="this.$route.query.search">Search results for: {{ this.$route.query.search }}</h4>
-    
     <!-- Page Title -->
     <h1 class="mb-4">All Recipes</h1>
+    
+    <!-- Search results -->
+    <h4 v-if="this.$route.query.search">Search results for: {{ this.$route.query.search }}</h4>
     
     <!-- Sort -->
     <h4>Sort</h4>
