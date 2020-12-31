@@ -62,7 +62,10 @@
             </li>
           </ul>
         </ul>
-		</nav>				
+		</nav>
+
+    <!-- Citrus banner -->
+    <section class="bg-theme-color-light p-0 rounded" style="background-image:url(/assets/images/citrus.jpg); background-size:cover; height:150px"></section>				
     
     <router-view/>
   </div>
