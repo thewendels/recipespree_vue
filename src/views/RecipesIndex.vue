@@ -1,25 +1,26 @@
 <template>
   <div class="recipes-index">
 
-    <!-- Title -->
-    <div class="m-2 p-2">
-      <h3>All Recipes</h3>
-    </div>
+    <!-- Title and Sort -->
+    <section class="bg-theme-color-light p-0">
+      <div class="container py-3">
+        <h1 class="h3">
+          All Recipes
+        </h1>
+        <div class="d-flex justify-content-end mb-3">
+          <h6 class="m-2">Sort:</h6>
+          <select v-model.lazy="selected" class="px-2 rounded">
+            <option value="newest"> Newest </option>
+            <option value="oldest"> Oldest </option>
+            <option value="alpha"> A-Z </option>
+            <option value="revAlpha"> Z-A </option>
+          </select>
+        </div>
+      </div>
+		</section>
 
-    <!-- Search results -->
+    <!-- Search Results -->
     <p v-if="this.$route.query.search">Search results for: "{{ this.$route.query.search }}"</p>
-    
-    <!-- Sort -->
-    <div class="d-flex justify-content-end mb-3">
-      <h6 >Sort</h6>
-      <select v-model.lazy="selected">
-        <option disabled value="">Please select one:</option>
-        <option value="alpha">A-Z</option>
-        <option value="revAlpha">Z-A</option>
-        <option value="newest">Newest</option>
-        <option value="oldest">Oldest</option>
-      </select>
-    </div>
 
     <!-- Cards -->
     <div class="container">
@@ -59,7 +60,7 @@ export default {
       tags: [],
       recipe: {},
       recipes: [],
-      selected: "",
+      selected: "newest",
     };
   },
   mixins: [Vue2Filters.mixin],

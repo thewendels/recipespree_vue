@@ -32,15 +32,16 @@
         </li>
       </ul>
 
-      <!-- Search -->
-      <ul class="list-inline list-unstyled mb-0 d-flex align-items-end">
-          <form v-on:submit.prevent="searchRecipes()"> 
-            <input type="text" v-model="search">
+      <!-- Search and Account -->
+      <ul class="list-inline list-unstyled mb-0 d-flex align-items-center">
+          <!-- Search -->
+          <form v-on:submit.prevent="searchRecipes()" class="mx-2"> 
+            <input type="text" v-model="search" class="mx-2">
             <input type="submit" value="Search" />
           </form>
 
           <!-- Account Options Dropdown -->
-          <ul class="list-inline list-unstyled mb-0 d-flex align-items-end">
+          <ul class="list-inline list-unstyled mb-0 d-flex align-items-end mr-2">
             <li class="list-inline-item mx-1 dropdown">
 
               <a href="#" aria-label="Account Options" id="dropdownAccountOptions" class="btn btn-sm rounded-circle btn-primary btn-soft-static" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
