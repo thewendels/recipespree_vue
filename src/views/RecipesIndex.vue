@@ -1,7 +1,13 @@
 <template>
   <div class="recipes-index">
+
+    <!-- Search results -->
     <h4 v-if="this.$route.query.search">Search results for: {{ this.$route.query.search }}</h4>
-    <h1>All Recipes</h1>
+    
+    <!-- Page Title -->
+    <h1 class="mb-4">All Recipes</h1>
+    
+    <!-- Sort -->
     <h4>Sort</h4>
     <select v-model.lazy="selected">
       <option disabled value="">Please select one:</option>
@@ -10,21 +16,34 @@
       <option value="newest">Newest</option>
       <option value="oldest">Oldest</option>
     </select>
-    <div v-for="recipe in orderBy(recipes, sortKey, sortOrder)">
-      <h2><router-link v-bind:to="`/recipes/${recipe.id}`">Name: {{ recipe.name }}</router-link></h2>
-      <h3>Source: {{ recipe.source }}</h3>
-      <h4 v-if="recipe.tags.length !== 0">Tags</h4>
-      <div v-for="tag in recipe.tags">
-        <h5><router-link v-bind:to="`/tags/${tag.id}`">{{ tag.name }}</router-link></h5>
+
+    <!-- Cards -->
+    <div class="container">
+      <div class="row" data-aos="fade-in" data-aos-delay="0">
+        <div class="col-12 col-lg-4 mb-4" v-for="recipe in orderBy(recipes, sortKey, sortOrder)">
+          <div class="card b-0 shadow-primary-xs shadow-primary-md-hover transition-all-ease-250 transition-hover-top h-100 rounded overflow-hidden">
+            <div class="clearfix">
+              <img class="" :src="`${recipe.image_url}`" alt="...">
+            </div>
+            <div class="card-body font-weight-light mt--60">
+              <h2 class="h5 card-title mb-4"><router-link v-bind:to="`/recipes/${recipe.id}`">{{ recipe.name }}</router-link></h2>
+              <p class="lead">{{ recipe.source }}</p>
+              <span class="float-end fs--14 text-gray-500 p-2" v-if="recipe.tags.length !== 0" v-for="tag in recipe.tags">
+                <router-link class="btn btn-outline-secondary btn-pill mb-1" v-bind:to="`/tags/${tag.id}`">{{ tag.name }}</router-link>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style>
-img
-{
-  width: 400px;
+img {
+  width: 100%;
+  height: 25vw;
+  object-fit: cover;
 }
 </style>
 

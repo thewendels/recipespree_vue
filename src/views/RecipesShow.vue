@@ -62,8 +62,8 @@
 </template>
 
 <style>
-img{
-  width: 400px;
+img {
+  object-fit: cover;
 }
 </style>
 
