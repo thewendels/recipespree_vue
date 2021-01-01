@@ -25,16 +25,18 @@
       <p v-if="this.$route.query.search">Search results for: "{{ this.$route.query.search }}"</p>
       <div class="row">
         <div class="col-12 col-lg-4 mb-4" v-for="recipe in orderBy(recipes, sortKey, sortOrder)">
-          <div class="card b-0 shadow-primary-xs shadow-primary-md-hover transition-all-ease-250 transition-hover-top h3-100 rounded overflow-hidden h-100">
-            <div class="clearfix">
-              <router-link v-bind:to="`/recipes/${recipe.id}`"><img class="" :src="`${recipe.image_url}`" alt="..."></router-link>
+          <router-link v-bind:to="`/recipes/${recipe.id}`">
+            <div class="card b-0 shadow-primary-xs shadow-primary-md-hover transition-all-ease-250 transition-hover-top h3-100 rounded overflow-hidden h-100">
+              <div class="clearfix">
+                <img class="" :src="`${recipe.image_url}`" alt="...">
+              </div>
+              <div class="card-body font-weight-light">
+                <h5 style="color: #212529">{{ recipe.name }}</h5>
+                <p>{{ recipe.source }}</p>
+                <router-link v-if="recipe.tags.length !== 0" v-for="tag in recipe.tags" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0" style="font-size:0.75rem" v-bind:to="`/tags/${tag.id}`" :key="tag.id">{{ tag.name }}</router-link>
+              </div>
             </div>
-            <div class="card-body font-weight-light">
-              <h5><router-link v-bind:to="`/recipes/${recipe.id}`">{{ recipe.name }}</router-link></h5>
-              <p>{{ recipe.source }}</p>
-              <router-link v-if="recipe.tags.length !== 0" v-for="tag in recipe.tags" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0" style="font-size:0.75rem" v-bind:to="`/tags/${tag.id}`" :key="tag.id">{{ tag.name }}</router-link>
-            </div>
-          </div>
+          </router-link>
         </div>
       </div>
     </div>
