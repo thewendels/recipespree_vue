@@ -74,7 +74,7 @@
 
     <!-- Footer -->
     <footer class="pt-2 pb-2 shadow-md border rounded bg-light d-flex align-items-center justify-content-center">
-      <p style="font-size:0.5rem">© RecipeSpree. Design: Smartly.</p>
+      <p style="font-size:0.5rem" class="mb-0">© RecipeSpree.</p>
     </footer>
 
   </div>

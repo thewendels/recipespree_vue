@@ -103,7 +103,7 @@ export default {
         .post("/api/recipes", params)
         .then(response => {
           console.log("recipes create", response.data);
-          this.$router.push("/recipes");
+          this.$router.push("/recipes/" + response.data.id);
         })
         .catch(error => {
           console.log("recipes create error", error.response);
@@ -119,7 +119,7 @@ export default {
         .post("/api/recipes/scrape", params)
         .then(response => {
           console.log("recipes scrape", response.data);
-          this.$router.push("/recipes");
+          this.$router.push("/recipes/" + response.data.id);
         })
         .catch(error => {
           console.log("recipes create error", error.response);
