@@ -24,51 +24,51 @@
 		</section>
     
     <!-- Manual Input Form -->
-    <div v-if="picked == 'manual'">
+    <div v-if="picked == 'manual'" class="mb-3">
       <form v-on:submit.prevent="createRecipe()">
         <ul>
           <li v-for="error in errors">{{ error }}</li>
         </ul>
         <div>
-          <div>
-            Name*: 
-            <input type="text" v-model="newName">
+          <div class="form-label-group mb-3">
+            <input type="text" v-model="newName" placeholder="Name(Required)" class="form-control">
+            <label for="text">Name (Required) </label>
           </div>
-          <div>
-            Source: 
-            <input type="text" v-model="newSource">
+          <div class="form-label-group mb-3">
+            <input type="text" v-model="newSource" placeholder="Source" class="form-control">
+            <label for="text">Source</label>
           </div>
-          <div>
-            Recipe URL: 
-            <input type="text" v-model="newRecipeUrl">
+          <div class="form-label-group mb-3">
+            <input type="text" v-model="newRecipeUrl" placeholder="Recipe URL" class="form-control">
+            <label for="text">Recipe URL</label>
           </div>
-          <div>
-            Servings: 
-            <input type="text" v-model="newServings">
+          <div class="form-label-group mb-3">
+            <input type="text" v-model="newServings" placeholder="Servings" class="form-control">
+            <label for="text">Servings</label>
           </div>
-          <div>
-            Total Prep Time (in Minutes): 
-            <input type="text" v-model="newTotalPrepTime">
+          <div class="form-label-group mb-3">
+            <input type="text" v-model="newTotalPrepTime" placeholder="Total Prep Time (Enter number of minutes)" class="form-control">
+            <label for="text">Total Prep Time (Enter number of minutes)</label>
           </div>
-          <div>
-            Intro: 
-            <input type="text" v-model="newIntro">
+          <div class="form-label-group mb-3">
+            <textarea v-model="newIntro" placeholder="Author's Introduction or Headnote" id="description" class="form-control" rows="3"></textarea>
+            <label for="textarea">Author's Introduction or Headnote</label>
           </div>
-          <div>
-            Ingredients*: 
-            <input type="text" v-model="newIngredients">
+          <div class="form-label-group mb-3">
+            <textarea v-model="newIngredients" placeholder="Ingredients (Required)" id="description" class="form-control" rows="5"></textarea>
+            <label for="textarea">Ingredients (Required)</label>
           </div>
-          <div>
-            Instructions*: 
-            <input type="text" v-model="newInstructions">
+          <div class="form-label-group mb-3">
+            <textarea v-model="newInstructions" placeholder="Instructions (Required)" id="description" class="form-control" rows="5"></textarea>
+            <label for="textarea">Instructions (Required)</label>
           </div>
-          <div>
-            Notes: 
-            <input type="text" v-model="newNotes">
+          <div class="form-label-group mb-3">
+            <textarea v-model="newNotes" placeholder="Notes" id="description" class="form-control" rows="3"></textarea>
+            <label for="textarea">Notes</label>
           </div>
-          <div>
-            Image URL: 
-            <input type="text" v-model="newImageUrl">
+          <div class="form-label-group mb-3">
+            <input type="text" v-model="newImageUrl" placeholder="Image URL (Right click on the image and select 'Copy Image Address')" class="form-control">
+            <label for="text">Image URL (Right click on the image and select 'Copy Image Address')</label>
           </div>
         </div>
         <input type="submit" value="Create" />
@@ -76,13 +76,12 @@
     </div>
 
     <!-- URL Input Form -->
-    <div v-if="picked == 'url'">
+    <div v-if="picked == 'url'" class="mb-3">
       <form v-on:submit.prevent="scrapeRecipe()">
-        <h3>Import Recipe via URL</h3>
-        <div>
-          Recipe URL: 
-          <input type="text" v-model="recipeUrl">
-        </div>
+        <div class="form-label-group mb-3">
+            <input type="text" v-model="recipeUrl" placeholder="Recipe URL" class="form-control">
+            <label for="text">Recipe URL</label>
+          </div>
         <input type="submit" value="Import" />
       </form>
     </div>
