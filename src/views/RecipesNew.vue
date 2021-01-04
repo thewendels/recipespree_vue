@@ -1,59 +1,84 @@
 <template>
   <div class="recipes-new">
-    <h1>Add a Recipe</h1>
-    <h3>Add Manually</h3>
-    <form v-on:submit.prevent="createRecipe()">
-      <ul>
-        <li v-for="error in errors">{{ error }}</li>
-      </ul>
-      <div>
-        <div>
-          Name*: 
-          <input type="text" v-model="newName">
-        </div>
-        <div>
-          Source: 
-          <input type="text" v-model="newSource">
-        </div>
-        <div>
-          Recipe URL: 
-          <input type="text" v-model="newRecipeUrl">
-        </div>
-        <div>
-          Servings: 
-          <input type="text" v-model="newServings">
-        </div>
-        <div>
-          Total Prep Time (in Minutes): 
-          <input type="text" v-model="newTotalPrepTime">
-        </div>
-        <div>
-          Intro: 
-          <input type="text" v-model="newIntro">
-        </div>
-        <div>
-          Ingredients*: 
-          <input type="text" v-model="newIngredients">
-        </div>
-        <div>
-          Instructions*: 
-          <input type="text" v-model="newInstructions">
-        </div>
-        <div>
-          Notes: 
-          <input type="text" v-model="newNotes">
-        </div>
-        <div>
-          Image URL: 
-          <input type="text" v-model="newImageUrl">
+    
+    <!-- Title and Pick Add Method -->
+    <section class="bg-theme-color-light p-0 rounded">
+      <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
+        <h1 class="h3 mb-0">
+          Add a Recipe
+        </h1>
+        <!-- Radio Buttons for Manual or URL -->
+        <div class="d-flex">
+          <!-- Radio Button - Manual -->
+          <label class="form-radio form-radio-pink form-radio-bordered">
+            <input type="radio" name="manual" value ="manual" v-model="picked" checked>
+            <i></i> <span>Enter Recipe Manually</span>
+          </label>
+          <!-- Radio Button - URL -->
+          <label class="form-radio form-radio-pink form-radio-bordered">
+            <input type="radio" name="url" value ="url" v-model="picked" checked>
+            <i></i> <span>Import Recipe via URL</span>
+          </label>
         </div>
       </div>
-      <input type="submit" value="Create" />
-    </form>
-    <h5>or</h5>
-    <div>
+		</section>
+    
+    <!-- Manual Input Form -->
+    <div v-if="picked == 'manual'">
+      <form v-on:submit.prevent="createRecipe()">
+        <ul>
+          <li v-for="error in errors">{{ error }}</li>
+        </ul>
+        <div>
+          <div>
+            Name*: 
+            <input type="text" v-model="newName">
+          </div>
+          <div>
+            Source: 
+            <input type="text" v-model="newSource">
+          </div>
+          <div>
+            Recipe URL: 
+            <input type="text" v-model="newRecipeUrl">
+          </div>
+          <div>
+            Servings: 
+            <input type="text" v-model="newServings">
+          </div>
+          <div>
+            Total Prep Time (in Minutes): 
+            <input type="text" v-model="newTotalPrepTime">
+          </div>
+          <div>
+            Intro: 
+            <input type="text" v-model="newIntro">
+          </div>
+          <div>
+            Ingredients*: 
+            <input type="text" v-model="newIngredients">
+          </div>
+          <div>
+            Instructions*: 
+            <input type="text" v-model="newInstructions">
+          </div>
+          <div>
+            Notes: 
+            <input type="text" v-model="newNotes">
+          </div>
+          <div>
+            Image URL: 
+            <input type="text" v-model="newImageUrl">
+          </div>
+        </div>
+        <input type="submit" value="Create" />
+      </form>
+    </div>
+
+    <!-- URL Input Form -->
+    <div v-if="picked == 'url'">
       <form v-on:submit.prevent="scrapeRecipe()">
-        <h3>Import Recipe with URL</h3>
+        <h3>Import Recipe via URL</h3>
         <div>
           Recipe URL: 
           <input type="text" v-model="recipeUrl">
@@ -79,8 +104,9 @@ export default {
       newInstructions: "",
       newNotes: "",
       newImageUrl: "",
-      recipeUrl:"",
+      recipeUrl: "",
       errors: [],
+      picked: "manual"
     };
   },
   created: function() {},
