@@ -12,6 +12,7 @@
             </button>
           </div>
           <div class="modal-body">
+            <p style="color: #212529">Something went wrong!</p>
             <ul>
               <li v-for="error in errors">{{ error }}</li>
             </ul>
@@ -34,7 +35,9 @@
             </button>
           </div>
           <div class="modal-body">
-            Something went wrong! Please update your URL if necessary. If the URL was correct, please enter this recipe manually.
+            <p>Something went wrong!</p>
+            <p>Please update your URL if necessary.</p>
+            <p>If the URL was correct, please enter this recipe manually.</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-pink" data-dismiss="modal">Close</button>
