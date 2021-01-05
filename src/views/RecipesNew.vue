@@ -1,21 +1,62 @@
 <template>
   <div class="recipes-new">
+
+    <!-- Manual Error Modal -->
+    <div class="modal fade" id="manualErrorModal" tabindex="-1" role="dialog" aria-labelledby="manual error modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="scrapeError">Error</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul>
+              <li v-for="error in errors">{{ error }}</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-pink" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Scrape Error Modal -->
+    <div class="modal fade" id="scrapeErrorModal" tabindex="-1" role="dialog" aria-labelledby="scrape error modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="scrapeError">Error</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Something went wrong! Please update your URL if necessary. If the URL was correct, please enter this recipe manually.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-pink" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     
     <!-- Title and Pick Add Method -->
     <section class="bg-theme-color-light p-0 rounded">
       <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
         <h1 class="h3 mb-0">Add a Recipe</h1>
-
         <!-- Radio Buttons for Manual or URL -->
         <div class="d-flex">
           <!-- Radio Button - Manual -->
           <label class="form-radio form-radio-pink form-radio-bordered">
-            <input type="radio" name="manual" value ="manual" v-model="picked">
+            <input type="radio" name="manual" value ="manual" v-model="selected">
             <i></i> <span>Enter Recipe Manually</span>
           </label>
           <!-- Radio Button - URL -->
           <label class="form-radio form-radio-pink form-radio-bordered">
-            <input type="radio" name="url" value ="url" v-model="picked" checked>
+            <input type="radio" name="url" value ="url" v-model="selected" checked>
             <i></i> <span>Import Recipe via URL</span>
           </label>
         </div>
@@ -24,11 +65,8 @@
 		</section>
     
     <!-- Manual Input Form -->
-    <div v-if="picked == 'manual'" class="mb-3 mx-5">
+    <div v-if="selected == 'manual'" class="mb-3 mx-5">
       <form v-on:submit.prevent="createRecipe()">
-        <ul>
-          <li v-for="error in errors">{{ error }}</li>
-        </ul>
         <div>
           <div class="form-label-group mb-3">
             <input type="text" v-model="newName" placeholder="Name(Required)" class="form-control">
@@ -76,12 +114,12 @@
     </div>
 
     <!-- URL Input Form -->
-    <div v-if="picked == 'url'" class="mb-3 mx-5">
+    <div v-if="selected == 'url'" class="mb-3 mx-5">
       <form v-on:submit.prevent="scrapeRecipe()">
         <div class="form-label-group mb-3">
-            <input type="text" v-model="recipeUrl" placeholder="Recipe URL" class="form-control">
-            <label for="text">Recipe URL</label>
-          </div>
+          <input type="text" v-model="recipeUrl" placeholder="Recipe URL" class="form-control">
+          <label for="text">Recipe URL</label>
+        </div>
         <input type="submit" value="Import" />
       </form>
     </div>
@@ -105,7 +143,7 @@ export default {
       newImageUrl: "",
       recipeUrl: "",
       errors: [],
-      picked: "manual"
+      selected: "manual",
     };
   },
   created: function() {},
@@ -133,6 +171,7 @@ export default {
         .catch(error => {
           console.log("recipes create error", error.response);
           this.errors = error.response.data.errors;
+          $('#manualErrorModal').modal('show');
         });
     },
     scrapeRecipe: function() {
@@ -147,8 +186,8 @@ export default {
           this.$router.push("/recipes/" + response.data.id);
         })
         .catch(error => {
-          console.log("recipes create error", error.response);
-          this.errors = error.response.data.errors;
+          console.log("recipes scrape error", error.response);
+          $('#scrapeErrorModal').modal('show');
         });
     },
   }
