@@ -10,7 +10,7 @@
     </div> -->
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light justify-content-lg-between justify-content-md-inherit pt-2 pb-2 shadow-md border rounded bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light justify-content-lg-between justify-content-lg-inherit pt-2 pb-2 shadow-md border rounded bg-light">
 
       <!-- Toggler to hamburger menu -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -18,14 +18,17 @@
       </button>
 
       <!-- Container for everything that should go in toggler -->
-      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <div class="collapse navbar-collapse d-flex-lg justify-content-lg-between" id="collapsibleNavbar">
+
         <!-- First section of navbar, logo through all tags -->
         <div class="align-items-center d-flex justify-content-start">
+
           <!-- Logo -->
           <router-link class="navbar-brand mr-0" to="/recipes">
             <img src="/assets/images/logo/rs_monogram.png" alt="RecipeSpree" style="object-fit:contain">
           </router-link>
-          <!-- Links -->
+
+          <!-- Text Links -->
           <ul class="nav  navbar-animate-fadein">
             <li class="nav-item">
               <router-link class="nav-link" to="/recipes">All Recipes</router-link>
@@ -40,7 +43,7 @@
         </div>
 
         <!-- Search and Account -->
-        <ul class="list-inline list-unstyled mb-0 d-flex align-items-center">
+        <ul class="list-inline list-unstyled mb-0 d-flex align-items-center justify-content-end">
           <!-- Search -->
           <form v-on:submit.prevent="searchRecipes()" class="mx-2"> 
             <input type="text" v-model="search" class="mx-2">
