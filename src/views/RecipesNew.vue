@@ -24,7 +24,7 @@
 		</section>
     
     <!-- Manual Input Form -->
-    <div v-if="picked == 'manual'" class="mb-3">
+    <div v-if="picked == 'manual'" class="mb-3 mx-5">
       <form v-on:submit.prevent="createRecipe()">
         <ul>
           <li v-for="error in errors">{{ error }}</li>
@@ -76,7 +76,7 @@
     </div>
 
     <!-- URL Input Form -->
-    <div v-if="picked == 'url'" class="mb-3">
+    <div v-if="picked == 'url'" class="mb-3 mx-5">
       <form v-on:submit.prevent="scrapeRecipe()">
         <div class="form-label-group mb-3">
             <input type="text" v-model="recipeUrl" placeholder="Recipe URL" class="form-control">
