@@ -47,8 +47,8 @@
             <label for="text">Servings</label>
           </div>
           <div class="form-label-group mb-3">
-            <input type="text" v-model="newTotalPrepTime" placeholder="Total Prep Time (Enter number of minutes)" class="form-control">
-            <label for="text">Total Prep Time (Enter number of minutes)</label>
+            <input type="number" v-model="newTotalPrepTime" placeholder="Total Prep Time (Enter number of minutes)" class="form-control">
+            <label for="number">Total Prep Time (Enter number of minutes)</label>
           </div>
           <div class="form-label-group mb-3">
             <textarea v-model="newIntro" placeholder="Author's Introduction or Headnote" id="description" class="form-control" rows="3"></textarea>
