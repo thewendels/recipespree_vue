@@ -1,17 +1,63 @@
 /* eslint-disable vue/no-dupe-v-else-if */
 <template>
   <div class="recipes-show">
-    <h2>Name: {{ recipe.name }}</h2>
+
+    <!-- Delete Recipe Check Modal -->
+    <div class="modal fade" id="deleteRecipeModal" tabindex="-1" role="dialog" aria-labelledby="manual error modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteRecipe">Delete Recipe</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to delete this recipe?</p>
+            <p>This action cannot be undone.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-pink" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-pink" v-on:click="destroyRecipe(recipe)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Title and Recipe Operations (Edit, Delete) -->
+    <section class="bg-theme-color-light p-0 rounded">
+      <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
+        <h1 class="h3 mb-0">
+          {{ recipe.name }}
+        </h1>
+        <div class="d-flex">
+          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" v-bind:to="`/recipes/${recipe.id}/edit`">
+            <i class="fi fi-pencil"></i>
+          </router-link>
+          <button class="btn btn-sm rounded-circle btn-pink btn-soft-static" v-on:click="showRecipeDeleteModal()">
+            <i class="fi fi-thrash"></i>
+          </button>
+        </div>
+      </div>
+		</section>
+
+
+
+
+
+
+
+    <h2>Name: </h2>
     <a v-if="recipe.recipe_url && recipe.source" :href="recipe.recipe_url" target="_blank"><h3>Source: {{ recipe.source }}</h3></a>
     <a v-else-if="!recipe.source && recipe.recipe_url" :href="recipe.recipe_url" target="_blank"><h3>Source: {{ recipe.recipe_url }}</h3></a>
     <h3 v-else-if="!recipe.recipe_url && recipe.source">Source: {{ recipe.source }}</h3>
     <img :src="`${recipe.image_url}`" v-bind:alt="recipe.name" />
     <div>
       <p>
-        <router-link v-bind:to="`/recipes/${recipe.id}/edit`">Edit Recipe</router-link>
+        
       </p>
       <p>
-        <button v-on:click="destroyRecipe(recipe)">Delete Recipe</button>
+        
       </p>
       <p>
         <router-link to="/recipes">Back to All Recipes</router-link>
@@ -96,6 +142,9 @@ export default {
       });
   },
   methods: {
+    showRecipeDeleteModal: function() {
+      $('#deleteRecipeModal').modal('show');
+    },
     showTagManager: function() {
       this.tagManagerAppear = !(this.tagManagerAppear);
       this.dropdownSelection = "";

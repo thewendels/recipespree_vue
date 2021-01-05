@@ -12,9 +12,9 @@
             </button>
           </div>
           <div class="modal-body">
-            <p style="color: #212529">Something went wrong!</p>
+            <p>Something went wrong!</p>
             <ul>
-              <li v-for="error in errors">{{ error }}</li>
+              <li style="color: #6c757d" v-for="error in errors">{{ error }}</li>
             </ul>
           </div>
           <div class="modal-footer">
