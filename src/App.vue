@@ -12,6 +12,11 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light justify-content-lg-between justify-content-lg-inherit pt-2 pb-2 shadow-md border rounded bg-light">
 
+      <!-- Logo -->
+      <router-link class="navbar-brand mr-0" to="/recipes">
+        <img src="/assets/images/logo/rs_monogram.png" alt="RecipeSpree" style="object-fit:contain">
+      </router-link>
+
       <!-- Toggler to hamburger menu -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -20,46 +25,40 @@
       <!-- Container for everything that should go in toggler -->
       <div class="collapse navbar-collapse d-flex-lg justify-content-lg-between" id="collapsibleNavbar">
 
-        <!-- First section of navbar, logo through all tags -->
-        <div class="align-items-center d-flex justify-content-start">
-
-          <!-- Logo -->
-          <router-link class="navbar-brand mr-0" to="/recipes">
-            <img src="/assets/images/logo/rs_monogram.png" alt="RecipeSpree" style="object-fit:contain">
-          </router-link>
-
-          <!-- Text Links -->
-          <ul class="nav  navbar-animate-fadein">
-            <li class="nav-item">
-              <router-link class="nav-link" to="/recipes">All Recipes</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/recipes/new">Add a Recipe</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/tags">All Tags</router-link>
-            </li>
-          </ul>
-        </div>
+        <!-- Text Links -->
+        <ul class="nav navbar-animate-fadein flex-column flex-lg-row">
+          <li class="nav-item">
+            <router-link class="nav-link" to="/recipes" data-toggle="collapse" data-target=".navbar-collapse.show">All Recipes</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/recipes/new" data-toggle="collapse" data-target=".navbar-collapse.show">Add a Recipe</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/tags" data-toggle="collapse" data-target=".navbar-collapse.show">All Tags</router-link>
+          </li>
+        </ul>
 
         <!-- Search and Account -->
-        <ul class="list-inline list-unstyled mb-0 d-flex align-items-center justify-content-end">
+        <ul class="list-inline list-unstyled mb-0 d-flex align-items-lg-center flex-column flex-lg-row">
           <!-- Search -->
           <form v-on:submit.prevent="searchRecipes()" class="mx-2"> 
             <input type="text" v-model="search" class="mx-2">
-            <input type="submit" value="Search" />
+            <input type="submit" data-toggle="collapse" data-target=".navbar-collapse.show" value="Search" />
           </form>
 
-          <!-- Account Options Dropdown -->
-          <ul class="list-inline list-unstyled mb-0 d-flex align-items-end mr-2">
+          <!-- Account Options Dropdown - Larger Breakpoints -->
+          <ul class="d-none d-lg-flex list-inline list-unstyled mb-0 align-items-end mr-2">
             <li class="list-inline-item mx-1 dropdown">
-
+              
+              <!-- Pink circle icon -->
               <a href="#" aria-label="Account Options" id="dropdownAccountOptions" class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
                 <span class="group-icon">
-                  <i class="fi fi-user-male"></i>
+                  <i class="fi fi-user-female"></i>
                   <i class="fi fi-close"></i>
                 </span>
               </a>
+              
+              <!-- Dropdown -->
               <div aria-labelledby="dropdownAccountOptions" class="prefix-link-icon dropdown-menu dropdown-menu-clean dropdown-menu-invert dropdown-click-ignore p-0 mt--18 fs--15">
                 <div class="dropdown-divider"></div>
                 <router-link to="/users" title="Profile" class="dropdown-footer dropdown-custom-ignore">
@@ -72,6 +71,18 @@
               </div>
             </li>
           </ul>
+
+          <!-- Account Options - Mobile -->
+          <div class="d-lg-none">
+            <router-link to="/users" title="Profile" class="dropdown-footer dropdown-custom-ignore" data-toggle="collapse" data-target=".navbar-collapse.show">
+            Profile
+            </router-link>
+            <router-link to="/logout" title="Log Out" class="prefix-icon-ignore dropdown-footer dropdown-custom-ignore" data-toggle="collapse" data-target=".navbar-collapse.show">
+              <i class="fi fi-power float-start"></i>
+              Log Out
+            </router-link>
+          </div>
+
         </ul>
       </div>
 		</nav>
