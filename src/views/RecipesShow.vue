@@ -18,18 +18,23 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-pink" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-pink" v-on:click="destroyRecipe(recipe)">Delete</button>
+            <button type="button" data-dismiss="modal" class="btn btn-pink" v-on:click="destroyRecipe(recipe)">Delete</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Title and Recipe Operations (Edit, Delete) -->
+    <!-- Title, Source, and Recipe Operations (Edit, Delete) -->
     <section class="bg-theme-color-light p-0 rounded">
       <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
-        <h1 class="h3 mb-0">
-          {{ recipe.name }}
-        </h1>
+        <div>
+          <h1 class="h3 mb-0">
+            {{ recipe.name }}
+          </h1>
+          <a v-if="recipe.recipe_url && recipe.source" :href="recipe.recipe_url" target="_blank"><h5>{{ recipe.source }}</h5></a>
+          <a v-else-if="!recipe.source && recipe.recipe_url" :href="recipe.recipe_url" target="_blank"><h5>Source: {{ recipe.recipe_url }}</h5></a>
+          <h5 v-else-if="!recipe.recipe_url && recipe.source">Source: {{ recipe.source }}</h5>
+        </div>
         <div class="d-flex">
           <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" v-bind:to="`/recipes/${recipe.id}/edit`">
             <i class="fi fi-pencil"></i>
@@ -41,58 +46,71 @@
       </div>
 		</section>
 
+    <!-- Image and Tag Manager -->
+    <section class="py-3">
 
+      <!-- Container for both -->
+      <div class="d-flex">
 
-
-
-
-
-    <h2>Name: </h2>
-    <a v-if="recipe.recipe_url && recipe.source" :href="recipe.recipe_url" target="_blank"><h3>Source: {{ recipe.source }}</h3></a>
-    <a v-else-if="!recipe.source && recipe.recipe_url" :href="recipe.recipe_url" target="_blank"><h3>Source: {{ recipe.recipe_url }}</h3></a>
-    <h3 v-else-if="!recipe.recipe_url && recipe.source">Source: {{ recipe.source }}</h3>
-    <img :src="`${recipe.image_url}`" v-bind:alt="recipe.name" />
-    <div>
-      <p>
-        
-      </p>
-      <p>
-        
-      </p>
-      <p>
-        <router-link to="/recipes">Back to All Recipes</router-link>
-      </p>
-    </div>
-    <h4>Tags</h4>
-    <div v-for="tag in recipe.tags">
-      <h5>
-        <router-link v-bind:to="`/tags/${tag.id}`">{{ tag.name }}</router-link>
-      </h5>
-      <button v-on:click="destroyRecipeTag(tag)">Delete Tag</button>
-    </div>
-    <div>
-      <button v-on:click="showTagManager()" v-if="tagManagerAppear !== true">Add Tag</button>
-      <form v-if="tagManagerAppear === true" v-on:submit.prevent="createRecipeTag()">
-        <ul>
-          <li v-for="error in errors">{{ error }}</li>
-        </ul>
-        <div>
-          <select v-model.lazy="dropdownSelection">
-            <option disabled value="">Select a tag:</option>
-            <option value="userInputNew">Create new tag</option>
-            <option :value="`${tag.name}`" v-for="tag in tags">{{ tag.name }}</option>
-          </select>
-          <div v-if="dropdownSelection === 'userInputNew'">
-            Tag Name: <input type="text" v-model="tagInput" />
-          </div>
-          <div>
-            <button v-on:click="showTagManager()">Cancel</button>
-            <input type="submit" value="Submit" />
-          </div>
+        <!-- Photo Column -->
+        <div v-if="recipe.image_url" class="d-middle rounded-xl overflow-hidden col-6 px-0" style="d-flex">
+          <img :src="`${recipe.image_url}`" v-bind:alt="recipe.name" />
         </div>
-      </form>
-    </div>
 
+        <!-- Tags Column -->
+        <div class="d-flex flex-column align-items-center justify-content-around col-6 px-0">
+          
+          <!-- Tags with trash cans -->
+          <div v-if="recipe.tags.length > 0 && !tagManagerAppear">
+            <div v-for="tag in recipe.tags" class="d-flex">
+              <router-link class="btn btn-sm btn-outline-pink btn-pill m-1 ml-5" style="font-size:0.75rem" v-bind:to="`/tags/${tag.id}`">{{ tag.name }}</router-link>
+              <button class="btn btn-sm rounded-circle btn-pink btn-soft-static" v-on:click="destroyRecipeTag(tag)">
+                <i class="fi fi-thrash"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Tag manager -->
+          <div class="d-flex">
+            
+            <!-- Button to add tag -->
+            <button class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-5" v-on:click="showTagManager()" v-if="tagManagerAppear !== true">Add Tag</button>
+            
+            <!-- Form with dropdown -->
+            <form v-if="tagManagerAppear" v-on:submit.prevent="createRecipeTag()" class="ml-5">
+              <div>
+                <select v-model.lazy="dropdownSelection" class="px-2 rounded mb-2">
+                  <option disabled value="">Select a Tag </option>
+                  <option value="userInputNew">Create a New Tag</option>
+                  <option :value="`${tag.name}`" v-for="tag in tags">{{ tag.name }}</option>
+                </select>
+
+                <!-- Field for entering new tag name -->
+                <div v-if="dropdownSelection === 'userInputNew'" class="form-label-group mb-3">
+                  <input type="text" v-model="tagInput" placeholder="Tag Name" class="form-control">
+                  <label for="text">Tag Name </label>
+                </div>
+                <div>
+                  <button v-on:click="showTagManager()"class="btn btn-pink btn-pill" >Cancel</button>
+                  <input type="submit" value="Submit" class="btn btn-pink btn-pill"/>
+                </div>
+              </div>
+            </form>
+          </div> 
+        </div>
+      </div>
+    </section>
+
+
+
+
+    
+    
+
+
+
+
+    <!-- Next section -->
     <p v-if="recipe.total_prep_time">Total Prep Time: {{ recipe.friendly_prep_time }}</p>
     <p v-if="recipe.intro">Intro: {{ recipe.intro }}</p>
     <p>Ingredients:</p>
@@ -104,12 +122,15 @@
       <p>{{ instruction }}</p>
     </div>
     <p v-if="recipe.notes">Notes: {{ recipe.notes }}</p>
+    <p>
+      <router-link to="/recipes">Back to All Recipes</router-link>
+    </p>
   </div>
 </template>
 
 <style>
 img {
-  object-fit: cover;
+  width: 100%;
 }
 </style>
 

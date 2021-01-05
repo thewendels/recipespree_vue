@@ -120,7 +120,7 @@
           <input type="text" v-model="recipeUrl" placeholder="Recipe URL" class="form-control">
           <label for="text">Recipe URL</label>
         </div>
-        <input type="submit" value="Import" />
+        <input type="submit" value="Import" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0"/>
       </form>
     </div>
   </div>
