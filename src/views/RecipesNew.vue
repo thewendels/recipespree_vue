@@ -51,7 +51,7 @@
       <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
         <h1 class="h3 mb-0">Add a Recipe</h1>
         <!-- Radio Buttons for Manual or URL -->
-        <div class="d-flex">
+        <div class="btn-group-vertical">
           <!-- Radio Button - Manual -->
           <label class="form-radio form-radio-pink form-radio-bordered">
             <input type="radio" name="manual" value ="manual" v-model="selected">
