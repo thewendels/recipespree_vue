@@ -43,7 +43,7 @@
           <!-- Search -->
           <form v-on:submit.prevent="searchRecipes()" class="mx-2"> 
             <input type="text" v-model="search" class="mx-2">
-            <input type="submit" data-toggle="collapse" data-target=".navbar-collapse.show" value="Search" />
+            <input type="submit" data-toggle="collapse" data-target=".navbar-collapse.show" value="Search" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0"/>
           </form>
 
           <!-- Account Options Dropdown - Larger Breakpoints -->

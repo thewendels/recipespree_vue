@@ -63,56 +63,53 @@
             <i></i> <span>Import Recipe via URL</span>
           </label>
         </div>
-        
       </div>
 		</section>
     
     <!-- Manual Input Form -->
     <div v-if="selected == 'manual'" class="mb-3 mx-5">
       <form v-on:submit.prevent="createRecipe()">
-        <div>
-          <div class="form-label-group mb-3">
-            <input type="text" v-model="newName" placeholder="Name(Required)" class="form-control">
-            <label for="text">Name (Required) </label>
-          </div>
-          <div class="form-label-group mb-3">
-            <input type="text" v-model="newSource" placeholder="Source" class="form-control">
-            <label for="text">Source</label>
-          </div>
-          <div class="form-label-group mb-3">
-            <input type="text" v-model="newRecipeUrl" placeholder="Recipe URL" class="form-control">
-            <label for="text">Recipe URL</label>
-          </div>
-          <div class="form-label-group mb-3">
-            <input type="text" v-model="newServings" placeholder="Servings" class="form-control">
-            <label for="text">Servings</label>
-          </div>
-          <div class="form-label-group mb-3">
-            <input type="number" v-model="newTotalPrepTime" placeholder="Total Prep Time (Enter number of minutes)" class="form-control">
-            <label for="number">Total Prep Time (Enter number of minutes)</label>
-          </div>
-          <div class="form-label-group mb-3">
-            <textarea v-model="newIntro" placeholder="Author's Introduction or Headnote" id="description" class="form-control" rows="3"></textarea>
-            <label for="textarea">Author's Introduction or Headnote</label>
-          </div>
-          <div class="form-label-group mb-3">
-            <textarea v-model="newIngredients" placeholder="Ingredients (Required)" id="description" class="form-control" rows="5"></textarea>
-            <label for="textarea">Ingredients (Required)</label>
-          </div>
-          <div class="form-label-group mb-3">
-            <textarea v-model="newInstructions" placeholder="Instructions (Required)" id="description" class="form-control" rows="5"></textarea>
-            <label for="textarea">Instructions (Required)</label>
-          </div>
-          <div class="form-label-group mb-3">
-            <textarea v-model="newNotes" placeholder="Notes" id="description" class="form-control" rows="3"></textarea>
-            <label for="textarea">Notes</label>
-          </div>
-          <div class="form-label-group mb-3">
-            <input type="text" v-model="newImageUrl" placeholder="Image URL (Right click on the image and select 'Copy Image Address')" class="form-control">
-            <label for="text">Image URL (Right click on the image and select 'Copy Image Address')</label>
-          </div>
+        <div class="form-label-group mb-3">
+          <input type="text" v-model="newName" placeholder="Name(Required)" class="form-control">
+          <label for="text">Name (Required) </label>
         </div>
-        <input type="submit" value="Create" />
+        <div class="form-label-group mb-3">
+          <input type="text" v-model="newSource" placeholder="Source" class="form-control">
+          <label for="text">Source</label>
+        </div>
+        <div class="form-label-group mb-3">
+          <input type="text" v-model="newRecipeUrl" placeholder="Recipe URL" class="form-control">
+          <label for="text">Recipe URL</label>
+        </div>
+        <div class="form-label-group mb-3">
+          <input type="text" v-model="newServings" placeholder="Servings" class="form-control">
+          <label for="text">Servings</label>
+        </div>
+        <div class="form-label-group mb-3">
+          <input type="number" v-model="newTotalPrepTime" placeholder="Total Prep Time (Enter number of minutes)" class="form-control">
+          <label for="number">Total Prep Time (Enter number of minutes)</label>
+        </div>
+        <div class="form-label-group mb-3">
+          <textarea v-model="newIntro" placeholder="Author's Introduction or Headnote" id="description" class="form-control" rows="3"></textarea>
+          <label for="textarea">Author's Introduction or Headnote</label>
+        </div>
+        <div class="form-label-group mb-3">
+          <textarea v-model="newIngredients" placeholder="Ingredients (Required)" id="description" class="form-control" rows="5"></textarea>
+          <label for="textarea">Ingredients (Required)</label>
+        </div>
+        <div class="form-label-group mb-3">
+          <textarea v-model="newInstructions" placeholder="Instructions (Required)" id="description" class="form-control" rows="5"></textarea>
+          <label for="textarea">Instructions (Required)</label>
+        </div>
+        <div class="form-label-group mb-3">
+          <textarea v-model="newNotes" placeholder="Notes" id="description" class="form-control" rows="3"></textarea>
+          <label for="textarea">Notes</label>
+        </div>
+        <div class="form-label-group mb-3">
+          <input type="text" v-model="newImageUrl" placeholder="Image URL (Right click on the image and select 'Copy Image Address')" class="form-control">
+          <label for="text">Image URL (Right click on the image and select 'Copy Image Address')</label>
+        </div>
+        <input type="submit" value="Create" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0"/>
       </form>
     </div>
 

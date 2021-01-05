@@ -1,52 +1,81 @@
 <template>
   <div class="recipes-edit">
-    <h1>Update Recipe</h1>
-    <form v-on:submit.prevent="updateRecipe(recipe)">
-      <ul>
-        <li v-for="error in errors">{{ error }}</li>
-      </ul>
-      <p>
-          Name*: <input type="text" v-model="recipe.name" />
-        </p>
-        <p>
-          Source: 
-          <input type="text" v-model="recipe.source">
-        </p>
-        <p>
-          Recipe URL: 
-          <input type="text" v-model="recipe.recipe_url">
-        </p>
-        <p>
-          Servings: 
-          <input type="text" v-model="recipe.servings">
-        </p>
-        <p>
-          Total Prep Time: 
-          <input type="text" v-model="recipe.total_prep_time">
-        </p>
-        <p>
-          Intro: 
-          <input type="text" v-model="recipe.intro">
-        </p>
-        <p>
-          Ingredients*: 
-          <input type="text" v-model="recipe.ingredients">
-        </p>
-        <p>
-          Instructions*: 
-          <input type="text" v-model="recipe.instructions">
-        </p>
-        <p>
-          Notes: 
-          <input type="text" v-model="recipe.notes">
-        </p>
-        <p>
-          Image URL: 
-          <input type="text" v-model="recipe.image_url">
-        </p>
+
+    <!-- Update Error Modal -->
+    <div class="modal fade" id="updateErrorModal" tabindex="-1" role="dialog" aria-labelledby="update error modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="updateError">Error</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p style="color: #212529">Something went wrong!</p>
+            <ul>
+              <li v-for="error in errors">{{ error }}</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-pink" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Title and Pick Add Method -->
+    <section class="bg-theme-color-light p-0 rounded">
+      <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
+        <h1 class="h3 mb-0">Update Recipe</h1>
+      </div>
+		</section>
+
+    <!-- Update Recipe Form -->
+    <form v-on:submit.prevent="updateRecipe(recipe)" class="mb-3 mx-5">
+      <div class="form-label-group mb-3">
+        <input type="text" v-model="recipe.name" placeholder="Name(Required)" class="form-control">
+        <label for="text">Name (Required) </label>
+      </div>
+      <div class="form-label-group mb-3">
+        <input type="text" v-model="recipe.source" placeholder="Source" class="form-control">
+        <label for="text">Source</label>
+      </div>
+      <div class="form-label-group mb-3">
+        <input type="text" v-model="recipe.recipe_url" placeholder="Recipe URL" class="form-control">
+        <label for="text">Recipe URL</label>
+      </div>
+      <div class="form-label-group mb-3">
+        <input type="text" v-model="recipe.servings" placeholder="Servings" class="form-control">
+        <label for="text">Servings</label>
+      </div>
+      <div class="form-label-group mb-3">
+        <input type="number" v-model="recipe.total_prep_time" placeholder="Total Prep Time (Enter number of minutes)" class="form-control">
+        <label for="number">Total Prep Time (Enter number of minutes)</label>
+      </div>
+      <div class="form-label-group mb-3">
+        <textarea v-model="recipe.intro" placeholder="Author's Introduction or Headnote" id="description" class="form-control" rows="3"></textarea>
+        <label for="textarea">Author's Introduction or Headnote</label>
+      </div>
+      <div class="form-label-group mb-3">
+        <textarea v-model="recipe.ingredients" placeholder="Ingredients (Required)" id="description" class="form-control" rows="5"></textarea>
+        <label for="textarea">Ingredients (Required)</label>
+      </div>
+      <div class="form-label-group mb-3">
+        <textarea v-model="recipe.instructions" placeholder="Instructions (Required)" id="description" class="form-control" rows="5"></textarea>
+        <label for="textarea">Instructions (Required)</label>
+      </div>
+      <div class="form-label-group mb-3">
+        <textarea v-model="recipe.notes" placeholder="Notes" id="description" class="form-control" rows="3"></textarea>
+        <label for="textarea">Notes</label>
+      </div>
+      <div class="form-label-group mb-3">
+        <input type="text" v-model="recipe.image_url" placeholder="Image URL (Right click on the image and select 'Copy Image Address')" class="form-control">
+        <label for="text">Image URL (Right click on the image and select 'Copy Image Address')</label>
+      </div>
       <div>
-        <router-link v-bind:to="`/recipes/${this.$route.params.id}`">Cancel</router-link>
-        <input type="submit" value="Update" />
+        <router-link v-bind:to="`/recipes/${this.$route.params.id}`" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0">Cancel</router-link>
+        <input type="submit" value="Update" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0" />
       </div>
     </form>
   </div>
@@ -92,6 +121,7 @@ export default {
         .catch(error => {
           console.log("recipes update error", error.response);
           this.errors = error.response.data.errors;
+          $('#updateErrorModal').modal('show');
         });
     },
   },
