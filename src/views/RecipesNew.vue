@@ -4,14 +4,13 @@
     <!-- Title and Pick Add Method -->
     <section class="bg-theme-color-light p-0 rounded">
       <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
-        <h1 class="h3 mb-0">
-          Add a Recipe
-        </h1>
+        <h1 class="h3 mb-0">Add a Recipe</h1>
+
         <!-- Radio Buttons for Manual or URL -->
         <div class="d-flex">
           <!-- Radio Button - Manual -->
           <label class="form-radio form-radio-pink form-radio-bordered">
-            <input type="radio" name="manual" value ="manual" v-model="picked" checked>
+            <input type="radio" name="manual" value ="manual" v-model="picked">
             <i></i> <span>Enter Recipe Manually</span>
           </label>
           <!-- Radio Button - URL -->
@@ -20,6 +19,7 @@
             <i></i> <span>Import Recipe via URL</span>
           </label>
         </div>
+        
       </div>
 		</section>
     

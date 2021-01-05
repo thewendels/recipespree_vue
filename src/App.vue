@@ -11,28 +11,36 @@
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light justify-content-lg-between justify-content-md-inherit pt-2 pb-2 shadow-md border rounded bg-light">
-      <div class="align-items-center d-flex justify-content-start">
-        <!-- Logo -->
-        <router-link class="navbar-brand mr-0" to="/recipes">
-          <img src="/assets/images/logo/rs_monogram.png" alt="RecipeSpree" style="object-fit:contain">
-        </router-link>
-        <!-- Links -->
-        <ul class="nav collapse navbar-collapse navbar-animate-fadein">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/recipes">All Recipes</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/recipes/new">Add a Recipe</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/tags">All Tags</router-link>
-          </li>
-        </ul>
-      </div>
-      
-  
-      <!-- Search and Account -->
-      <ul class="list-inline list-unstyled mb-0 d-flex align-items-center">
+
+      <!-- Toggler to hamburger menu -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Container for everything that should go in toggler -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <!-- First section of navbar, logo through all tags -->
+        <div class="align-items-center d-flex justify-content-start">
+          <!-- Logo -->
+          <router-link class="navbar-brand mr-0" to="/recipes">
+            <img src="/assets/images/logo/rs_monogram.png" alt="RecipeSpree" style="object-fit:contain">
+          </router-link>
+          <!-- Links -->
+          <ul class="nav  navbar-animate-fadein">
+            <li class="nav-item">
+              <router-link class="nav-link" to="/recipes">All Recipes</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/recipes/new">Add a Recipe</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/tags">All Tags</router-link>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Search and Account -->
+        <ul class="list-inline list-unstyled mb-0 d-flex align-items-center">
           <!-- Search -->
           <form v-on:submit.prevent="searchRecipes()" class="mx-2"> 
             <input type="text" v-model="search" class="mx-2">
@@ -62,6 +70,7 @@
             </li>
           </ul>
         </ul>
+      </div>
 		</nav>
 
     <!-- Citrus banner top -->
