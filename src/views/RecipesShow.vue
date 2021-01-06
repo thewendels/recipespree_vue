@@ -28,7 +28,7 @@
     <section class="bg-theme-color-light p-0 rounded">
       <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
         <div>
-          <h1 class="h3 mb-0">
+          <h1 class="h3 mb-2">
             {{ recipe.name }}
           </h1>
           <a v-if="recipe.recipe_url && recipe.source" :href="recipe.recipe_url" target="_blank"><h5>{{ recipe.source }}</h5></a>
@@ -53,17 +53,17 @@
       <div class="d-flex">
 
         <!-- Photo Column -->
-        <div v-if="recipe.image_url" class="d-middle rounded-xl overflow-hidden col-6 px-0" style="d-flex">
-          <img :src="`${recipe.image_url}`" v-bind:alt="recipe.name" />
+        <div v-if="recipe.image_url" class="d-middle rounded-xl overflow-hidden col-8 px-0 ml-3 mb-3" style="d-flex">
+          <img :src="`${recipe.image_url}`" v-bind:alt="recipe.name" class="show-img"/>
         </div>
 
         <!-- Tags Column -->
-        <div class="d-flex flex-column align-items-center justify-content-around col-6 px-0">
+        <div class="d-flex flex-column align-items-start justify-content-center col-4 px-0">
           
           <!-- Tags with trash cans -->
           <div v-if="recipe.tags.length > 0 && !tagManagerAppear">
             <div v-for="tag in recipe.tags" class="d-flex">
-              <router-link class="btn btn-sm btn-outline-pink btn-pill m-1 ml-5" style="font-size:0.75rem" v-bind:to="`/tags/${tag.id}`">{{ tag.name }}</router-link>
+              <router-link class="btn btn-sm btn-outline-pink btn-pill m-1 ml-5" v-bind:to="`/tags/${tag.id}`">{{ tag.name }}</router-link>
               <button class="btn btn-sm rounded-circle btn-pink btn-soft-static" v-on:click="destroyRecipeTag(tag)">
                 <i class="fi fi-thrash"></i>
               </button>
@@ -74,7 +74,7 @@
           <div class="d-flex">
             
             <!-- Button to add tag -->
-            <button class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-5" v-on:click="showTagManager()" v-if="tagManagerAppear !== true">Add Tag</button>
+            <button class="btn btn-sm btn-outline-pink btn-pill m-1 ml-5" v-on:click="showTagManager()" v-if="tagManagerAppear !== true">Add Tag</button>
             
             <!-- Form with dropdown -->
             <form v-if="tagManagerAppear" v-on:submit.prevent="createRecipeTag()" class="ml-5">
@@ -91,7 +91,7 @@
                   <label for="text">Tag Name </label>
                 </div>
                 <div>
-                  <button v-on:click="showTagManager()"class="btn btn-pink btn-pill" >Cancel</button>
+                  <button v-on:click="showTagManager() "class="btn btn-pink btn-pill" >Cancel</button>
                   <input type="submit" value="Submit" class="btn btn-pink btn-pill"/>
                 </div>
               </div>
@@ -101,36 +101,44 @@
       </div>
     </section>
 
-
-
-
-    
-    
-
-
-
-
-    <!-- Next section -->
-    <p v-if="recipe.total_prep_time">Total Prep Time: {{ recipe.friendly_prep_time }}</p>
-    <p v-if="recipe.intro">Intro: {{ recipe.intro }}</p>
-    <p>Ingredients:</p>
-    <ul v-for="ingredient in recipe.stepped_ingredients">
-      <li>{{ ingredient }}</li>
-    </ul>
-    <p>Instructions:</p>
-    <div v-for="instruction in recipe.stepped_instructions">
-      <p>{{ instruction }}</p>
+    <!-- Recipe Body -->
+    <div class="mb-3 mx-5">
+      <div>
+        <p v-if="recipe.total_prep_time" class="mb-0 dark-text">Total Time: {{ recipe.friendly_prep_time }}</p>
+        <p v-if="recipe.servings" class="dark-text">Servings: {{ recipe.servings }}</p>
+      </div>
+      <p v-if="recipe.intro" class="dark-text mt-5"><i>{{ recipe.intro }}</i></p>
+      <h5 class="mt-5 mb-3">Ingredients</h5>
+      <ul v-for="ingredient in recipe.stepped_ingredients" class="list-unstyled">
+        <li>{{ ingredient }}</li>
+      </ul>
+      <h5 class="mt-5 mb-3">Instructions</h5>
+      <div v-for="instruction in recipe.stepped_instructions">
+        <p class="dark-text">{{ instruction }}</p>
+      </div>
+      <div v-if="recipe.notes" class="dark-text">
+        <h5 class="mt-5 mb-3">Notes</h5>
+        <p>{{ recipe.notes }}</p>
+      </div>
+      <div class="text-center my-4">
+        <router-link class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0" v-bind:to="`/recipes/${recipe.id}/edit`">Edit Recipe</router-link>
+        <button class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0" v-on:click="showRecipeDeleteModal()">
+        Delete Recipe</button>
+        <router-link to="/recipes" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0">Back to All Recipes</router-link>
+      </div>
     </div>
-    <p v-if="recipe.notes">Notes: {{ recipe.notes }}</p>
-    <p>
-      <router-link to="/recipes">Back to All Recipes</router-link>
-    </p>
+
   </div>
 </template>
 
 <style>
-img {
+.show-img {
   width: 100%;
+  height: 35vw;
+  object-fit: cover;
+}
+.dark-text {
+  color: #212529;
 }
 </style>
 
@@ -187,6 +195,7 @@ export default {
           console.log("recipetags create", response.data);
           this.recipe = response.data;
           this.dropdownSelection = "";
+          this.tagInput = "";
           this.tagManagerAppear = false;
         })
         .catch(error => {

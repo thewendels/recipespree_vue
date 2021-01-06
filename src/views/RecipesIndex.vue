@@ -28,7 +28,7 @@
           <router-link v-bind:to="`/recipes/${recipe.id}`">
             <div class="card b-0 shadow-primary-xs shadow-primary-md-hover transition-all-ease-250 transition-hover-top h3-100 rounded overflow-hidden h-100">
               <div class="clearfix">
-                <img class="" :src="`${recipe.image_url}`" alt="...">
+                <img class="card-img" :src="`${recipe.image_url}`" alt="...">
               </div>
               <div class="card-body font-weight-light">
                 <h5 style="color: #212529">{{ recipe.name }}</h5>
@@ -44,7 +44,7 @@
 </template>
 
 <style>
-img {
+.card-img {
   width: 100%;
   height: 25vw;
   object-fit: cover;

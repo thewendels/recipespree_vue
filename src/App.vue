@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-lg navbar-light justify-content-lg-between justify-content-lg-inherit pt-2 pb-2 shadow-md border rounded bg-light">
 
       <!-- Logo -->
-      <router-link class="navbar-brand mr-0" to="/recipes">
+      <router-link class="navbar-brand mr-0 ml-2" to="/recipes">
         <img src="/assets/images/logo/rs_monogram.png" alt="RecipeSpree" style="object-fit:contain">
       </router-link>
 
@@ -40,6 +40,7 @@
 
         <!-- Search and Account -->
         <ul class="list-inline list-unstyled mb-0 d-flex align-items-lg-center flex-column flex-lg-row">
+          
           <!-- Search -->
           <form v-on:submit.prevent="searchRecipes()" class="mx-2"> 
             <input type="text" v-model="search" class="mx-2">
@@ -50,7 +51,7 @@
           <ul class="d-none d-lg-flex list-inline list-unstyled mb-0 align-items-end mr-2">
             <li class="list-inline-item mx-1 dropdown">
               
-              <!-- Pink circle icon -->
+              <!-- Pink account icon -->
               <a href="#" aria-label="Account Options" id="dropdownAccountOptions" class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
                 <span class="group-icon">
                   <i class="fi fi-users"></i>
@@ -111,7 +112,7 @@ export default {
   data: function() {
     return {
       search: "",
-    }   
+    };   
   },
   methods: {
     isLoggedIn: function() {
