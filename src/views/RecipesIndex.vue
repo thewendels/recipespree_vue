@@ -2,7 +2,7 @@
   <div class="recipes-index">
 
     <!-- Title and Sort -->
-    <section class="bg-theme-color-light p-0 rounded">
+    <section class="bg-theme-color-light p-0 rounded" v-if="recipes.length > 0">
       <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
         <h1 class="h3 mb-0">
           All Recipes
@@ -19,8 +19,18 @@
       </div>
 		</section>
 
+    <div v-if="recipes.length == 0" class="my-5 mx-3 d-flex align-items-center justify-content-center">
+      <h5 class="mx-3 align-items-start" >Welcome to RecipeSpree!</h5>
+      <div>
+        <p>To get started, click on <strong>Add a Recipe</strong> above. You can fill in your recipe's details one field at a time, or import the recipe by entering its URL.</p>
+        <p>Once your recipe is created, add tags to organize it within your collection. You might categorize it by course (Entree, Dessert), type of cuisine (Italian, Thai), style (Healthy, Special Occasion, Quick and Easy, Vegetarian), but ultimately it's up to you!</p>
+        <p>You can click on a tag name to access all the recipes that share it.</p>
+        <p>Enjoy!</p>
+      </div>
+    </div>
+    
     <!-- Cards -->
-    <div class="container">
+    <div class="container" v-if="recipes.length > 0">
       <!-- Search Results -->
       <p v-if="this.$route.query.search">Search results for: "{{ this.$route.query.search }}"</p>
       <div class="row">
