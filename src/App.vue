@@ -53,7 +53,7 @@
               
               <!-- Pink account icon -->
               <a href="#" aria-label="Account Options" id="dropdownAccountOptions" class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
-                <span class="group-icon">
+                <span class="group-icon" >
                   <i class="fi fi-users"></i>
                   <i class="fi fi-close"></i>
                 </span>

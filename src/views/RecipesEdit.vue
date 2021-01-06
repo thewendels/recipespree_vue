@@ -73,7 +73,7 @@
         <input type="text" v-model="recipe.image_url" placeholder="Image URL (Right click on the image and select 'Copy Image Address')" class="form-control">
         <label for="text">Image URL (Right click on the image and select 'Copy Image Address')</label>
       </div>
-      <div>
+      <div class="text-center my-4">
         <router-link v-bind:to="`/recipes/${this.$route.params.id}`" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0">Cancel</router-link>
         <input type="submit" value="Update" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0" />
       </div>
