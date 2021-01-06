@@ -3,7 +3,7 @@
   <div class="recipes-show">
 
     <!-- Delete Recipe Check Modal -->
-    <div class="modal fade" id="deleteRecipeModal" tabindex="-1" role="dialog" aria-labelledby="manual error modal" aria-hidden="true">
+    <div class="modal fade" id="deleteRecipeModal" tabindex="-1" role="dialog" aria-labelledby="delete recipe modal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
