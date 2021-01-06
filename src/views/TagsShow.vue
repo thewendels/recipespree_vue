@@ -65,7 +65,7 @@
     </div>
 
     <!-- Buttons -->
-    <div class="text-center my-4">
+    <div class="text-center mb-4 mt-2">
       <router-link class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0" v-bind:to="`/tags/${tag.id}/edit`">Edit Tag</router-link>
       <button class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0" v-on:click="showTagDeleteModal()">
       Delete Tag</button>
