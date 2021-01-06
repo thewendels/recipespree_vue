@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <!-- Title, Source, and Recipe Operations (Edit, Delete, Back) -->
+    <!-- Title, Source, and Recipe Operations (Edit, Delete, Home) -->
     <section class="bg-theme-color-light p-0 rounded">
       <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
         <div>
