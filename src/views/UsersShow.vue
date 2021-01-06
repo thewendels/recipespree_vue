@@ -51,9 +51,9 @@
     <div class="my-3 mx-5">
       <h5 class="mt-3 mb-3">Username</h5>
       <p class="mb-3 dark-text">{{ user.username }}</p>
-      <h5 class="mt-5 mb-3">Email</h5>
+      <h5 class="mt-3 mb-3">Email</h5>
       <p class="mb-3 dark-text">{{ user.email }}</p>
-      <h5 class="mt-5 mb-3">Password</h5>
+      <h5 class="mt-3 mb-3">Password</h5>
       <p class="mb-5 dark-text">**********</p>
     
       <!-- Buttons -->

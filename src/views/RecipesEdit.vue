@@ -24,7 +24,7 @@
       </div>
     </div>
     
-    <!-- Title and Pick Add Method -->
+    <!-- Title -->
     <section class="bg-theme-color-light p-0 rounded">
       <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
         <h1 class="h3 mb-0">Update Recipe</h1>
@@ -34,7 +34,7 @@
     <!-- Update Recipe Form -->
     <form v-on:submit.prevent="updateRecipe(recipe)" class="mb-3 mx-5">
       <div class="form-label-group mb-3">
-        <input type="text" v-model="recipe.name" placeholder="Name(Required)" class="form-control">
+        <input type="text" v-model="recipe.name" placeholder="Name (Required)" class="form-control">
         <label for="text">Name (Required) </label>
       </div>
       <div class="form-label-group mb-3">
