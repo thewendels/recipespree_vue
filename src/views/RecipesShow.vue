@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <!-- Title, Source, and Recipe Operations (Edit, Delete) -->
+    <!-- Title, Source, and Recipe Operations (Edit, Delete, Back) -->
     <section class="bg-theme-color-light p-0 rounded">
       <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
         <div>
@@ -62,6 +62,9 @@
           <button class="btn btn-sm rounded-circle btn-pink btn-soft-static" v-on:click="showRecipeDeleteModal()">
             <i class="fi fi-thrash"></i>
           </button>
+          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" to="/recipes/">
+            <i class="fi fi-go-back"></i>
+          </router-link>
         </div>
       </div>
 		</section>
@@ -130,7 +133,7 @@
       </div>
       <p v-if="recipe.intro" class="dark-text mt-5"><i>{{ recipe.intro }}</i></p>
       <h5 class="mt-5 mb-3">Ingredients</h5>
-      <ul v-for="ingredient in recipe.stepped_ingredients" class="list-unstyled mb-0">
+      <ul v-for="ingredient in recipe.stepped_ingredients" class="list-unstyled mb-3">
         <li>{{ ingredient }}</li>
       </ul>
       <h5 class="mt-5 mb-3">Instructions</h5>
@@ -141,6 +144,7 @@
         <h5 class="mt-5 mb-3">Notes</h5>
         <p>{{ recipe.notes }}</p>
       </div>
+      <!-- Buttons -->
       <div class="text-center my-4">
         <router-link class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0" v-bind:to="`/recipes/${recipe.id}/edit`">Edit Recipe</router-link>
         <button class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0" v-on:click="showRecipeDeleteModal()">

@@ -109,7 +109,10 @@
           <input type="text" v-model="newImageUrl" placeholder="Image URL (Right click on the image and select 'Copy Image Address')" class="form-control">
           <label for="text">Image URL (Right click on the image and select 'Copy Image Address')</label>
         </div>
-        <input type="submit" value="Create" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0"/>
+        <div class="text-center my-4">
+          <router-link to="/recipes" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0">Cancel</router-link>
+          <input type="submit" value="Create" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0"/>
+        </div>
       </form>
     </div>
 
@@ -120,7 +123,10 @@
           <input type="text" v-model="recipeUrl" placeholder="Recipe URL" class="form-control">
           <label for="text">Recipe URL</label>
         </div>
-        <input type="submit" value="Import" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0"/>
+        <div class="text-center my-4">
+          <router-link to="/recipes" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0">Cancel</router-link>
+          <input type="submit" value="Import" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0"/>
+        </div>
       </form>
     </div>
   </div>
