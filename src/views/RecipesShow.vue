@@ -63,7 +63,7 @@
           <!-- Tags with trash cans -->
           <div v-if="recipe.tags.length > 0 && !tagManagerAppear">
             <div v-for="tag in recipe.tags" class="d-flex">
-              <router-link class="btn btn-sm btn-outline-pink btn-pill m-1 ml-5" v-bind:to="`/tags/${tag.id}`">{{ tag.name }}</router-link>
+              <router-link class="btn btn-sm btn-outline-pink btn-pill m-1 ml-3" v-bind:to="`/tags/${tag.id}`">{{ tag.name }}</router-link>
               <button class="btn btn-sm rounded-circle btn-pink btn-soft-static" v-on:click="destroyRecipeTag(tag)">
                 <i class="fi fi-thrash"></i>
               </button>
@@ -74,7 +74,7 @@
           <div class="d-flex">
             
             <!-- Button to add tag -->
-            <button class="btn btn-sm btn-outline-pink btn-pill m-1 ml-5" v-on:click="showTagManager()" v-if="tagManagerAppear !== true">Add Tag</button>
+            <button class="btn btn-sm btn-outline-pink btn-pill m-1 ml-3" v-on:click="showTagManager()" v-if="tagManagerAppear !== true">Add Tag</button>
             
             <!-- Form with dropdown -->
             <form v-if="tagManagerAppear" v-on:submit.prevent="createRecipeTag()" class="ml-5">
