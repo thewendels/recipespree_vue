@@ -5,7 +5,7 @@
     <section class="bg-theme-color-light p-0 rounded" v-if="recipes.length > 0">
       <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
         <h1 class="h3 mb-0">
-          All Recipes
+          Recipes
         </h1>
         <div class="d-flex">
           <h6 class="m-2">Sort:</h6>
@@ -20,7 +20,7 @@
 		</section>
     
     <!-- Cards (if user has recipes) -->
-    <div class="container" v-if="isLoaded &&  recipes.length > 0">
+    <div class="container" v-if="isLoaded && recipes.length > 0">
       <!-- Search Results -->
       <p v-if="this.$route.query.search">Search results for: "{{ this.$route.query.search }}"</p>
       <div class="row">
