@@ -24,6 +24,26 @@
       </div>
     </div>
 
+    <!-- RecipeTags Create Error Modal -->
+    <div class="modal fade" id="recTagsErrorModal" tabindex="-1" role="dialog" aria-labelledby="recipe tags create error modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="recTagsError">Error</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Please enter a name for your tag.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-pink" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Title, Source, and Recipe Operations (Edit, Delete) -->
     <section class="bg-theme-color-light p-0 rounded">
       <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
@@ -109,7 +129,7 @@
       </div>
       <p v-if="recipe.intro" class="dark-text mt-5"><i>{{ recipe.intro }}</i></p>
       <h5 class="mt-5 mb-3">Ingredients</h5>
-      <ul v-for="ingredient in recipe.stepped_ingredients" class="list-unstyled">
+      <ul v-for="ingredient in recipe.stepped_ingredients" class="list-unstyled mb-0">
         <li>{{ ingredient }}</li>
       </ul>
       <h5 class="mt-5 mb-3">Instructions</h5>
@@ -199,8 +219,8 @@ export default {
           this.tagManagerAppear = false;
         })
         .catch(error => {
-          console.log("recipes create error", error.response);
-          this.errors = error.response.data.errors;
+          console.log("recipetags create error", error.response);
+          $('#recTagsErrorModal').modal('show');
         });
     },
     destroyRecipeTag: function(tag) {
