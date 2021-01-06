@@ -62,8 +62,8 @@
           <button class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Delete" v-on:click="showRecipeDeleteModal()">
             <i class="fi fi-thrash"></i>
           </button>
-          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Go Back" to="/recipes/">
-            <i class="fi fi-go-back"></i>
+          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Home" to="/recipes/">
+            <i class="fi fi-home"></i>
           </router-link>
         </div>
       </div>

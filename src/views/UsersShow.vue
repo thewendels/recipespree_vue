@@ -40,8 +40,8 @@
           <button class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Delete" v-on:click="showUserDeleteModal()">
             <i class="fi fi-thrash"></i>
           </button>
-          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Go Back" to="/recipes/">
-            <i class="fi fi-go-back"></i>
+          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Home" to="/recipes/">
+            <i class="fi fi-home"></i>
           </router-link>
         </div>
       </div>
@@ -49,12 +49,12 @@
 
     <!-- Account Page Body -->
     <div class="my-3 mx-5">
-      <h5 class="mt-3 mb-3">Username</h5>
+      <h5 class="mt-3 mb-1">Username</h5>
       <p class="mb-3 dark-text">{{ user.username }}</p>
-      <h5 class="mt-3 mb-3">Email</h5>
+      <h5 class="mt-2 mb-1">Email</h5>
       <p class="mb-3 dark-text">{{ user.email }}</p>
-      <h5 class="mt-3 mb-3">Password</h5>
-      <p class="mb-5 dark-text">**********</p>
+      <h5 class="mt-2 mb-1">Password</h5>
+      <p class="mb-3 dark-text">**********</p>
     
       <!-- Buttons -->
       <div class="text-center my-4">
