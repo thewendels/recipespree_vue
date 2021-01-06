@@ -38,7 +38,8 @@
           <router-link v-bind:to="`/recipes/${recipe.id}`">
             <div class="card b-0 shadow-primary-xs shadow-primary-md-hover transition-all-ease-250 transition-hover-top h3-100 rounded overflow-hidden h-100">
               <div class="clearfix">
-                <img class="card-img" :src="`${recipe.image_url}`" alt="...">
+                <img v-if="recipe.image_url" class="card-img" :src="`${recipe.image_url}`" v-bind:alt="recipe.name">
+                <img v-else class="card-img" src="/assets/images/default-recipe-photo.png" v-bind:alt="recipe.name">
               </div>
               <div class="card-body font-weight-light">
                 <h5 style="color: #212529">{{ recipe.name }}</h5>

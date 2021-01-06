@@ -73,8 +73,9 @@
       <div class="d-flex">
 
         <!-- Photo Column -->
-        <div v-if="recipe.image_url" class="d-middle rounded-xl overflow-hidden col-8 px-0 ml-3 mb-3" style="d-flex">
-          <img :src="`${recipe.image_url}`" v-bind:alt="recipe.name" class="show-img"/>
+        <div class="d-middle rounded-xl overflow-hidden col-8 px-0 ml-3 mb-3" style="d-flex">
+          <img v-if="recipe.image_url" :src="`${recipe.image_url}`" v-bind:alt="recipe.name" class="show-img"/>
+          <img v-else src="/assets/images/default-recipe-photo.png" v-bind:alt="recipe.name" class="show-img"/>
         </div>
 
         <!-- Tags Column -->
