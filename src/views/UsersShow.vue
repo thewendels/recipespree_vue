@@ -61,7 +61,7 @@
         <router-link class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0" v-bind:to="`/users/edit`">Edit Account</router-link>
         <button class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0" v-on:click="showUserDeleteModal()">
         Delete Account</button>
-        <router-link to="/recipes" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0">Back to All Recipes</router-link> 
+        <router-link to="/recipes" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0">Home</router-link> 
       </div>
     </div>
     

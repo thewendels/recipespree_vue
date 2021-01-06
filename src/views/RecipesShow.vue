@@ -149,7 +149,7 @@
         <router-link class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0" v-bind:to="`/recipes/${recipe.id}/edit`">Edit Recipe</router-link>
         <button class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0" v-on:click="showRecipeDeleteModal()">
         Delete Recipe</button>
-        <router-link to="/recipes" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0">Back to All Recipes</router-link>
+        <router-link to="/recipes" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0">Home</router-link>
       </div>
     </div>
 
