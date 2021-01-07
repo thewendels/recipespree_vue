@@ -69,8 +69,15 @@
       </div>
 		</section>
 
+    <!-- Waiting for recipe to load -->
+    <div v-if="!isLoaded" class="text-center">
+      <div class="fs--30 fi fi-spin fi-loading-dots text-pink" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
     <!-- Image and Tag Manager -->
-    <section class="py-3">
+    <section v-if="isLoaded" class="py-3">
 
       <!-- Container for both -->
       <div class="d-flex">
@@ -126,7 +133,7 @@
     </section>
 
     <!-- Recipe Body -->
-    <div class="mb-3 mx-5">
+    <div v-if="isLoaded" class="mb-3 mx-5">
       <div>
         <p v-if="recipe.total_prep_time" class="mb-0 dark-text">Total Time: {{ recipe.friendly_prep_time }}</p>
         <p v-if="recipe.servings" class="dark-text">Servings: {{ recipe.servings }}</p>
@@ -179,6 +186,7 @@ export default {
       dropdownSelection: "",
       tagInput: "",
       errors: [],
+      isLoaded: false,
     };
   },
   created: function() {
@@ -187,6 +195,7 @@ export default {
       .then(response => {
         console.log("recipes show", response);
         this.recipe = response.data;
+        this.isLoaded = true;
       });
     axios
       .get("/api/tags/")

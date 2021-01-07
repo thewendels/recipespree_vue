@@ -55,8 +55,15 @@
       </div>
 		</section>
 
+    <!-- Waiting for recipes to load -->
+    <div v-if="!isLoaded" class="text-center">
+      <div class="fs--30 fi fi-spin fi-loading-dots text-pink" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
     <!-- Cards -->
-    <div class="container">
+    <div v-if="isLoaded" class="container">
       <!-- Recipes labeled with this tag -->
       <div class="row">
         <div class="col-12 col-lg-4 mb-4" v-for="recipe in orderBy(tag.recipes, sortKey, sortOrder)">
@@ -96,6 +103,7 @@ export default {
       recipe: {},
       recipes: [],
       selected: "alpha",
+      isLoaded: false,
     };
   },
   mixins: [Vue2Filters.mixin],
@@ -104,6 +112,7 @@ export default {
       .get("/api/tags/" + this.$route.params.id).then(response => {
         console.log("tags show", response);
         this.tag = response.data;
+        this.isLoaded = true;
       });
   },
   computed: {
