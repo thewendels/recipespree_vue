@@ -11,6 +11,7 @@ import UsersShow from "../views/UsersShow.vue";
 import UsersEdit from "../views/UsersEdit.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
+import NonExisting from "../views/NonExisting.vue";
 
 Vue.use(VueRouter)
 
@@ -74,6 +75,11 @@ const routes = [
     path: '/logout',
     name: 'logout',
     component: Logout
+  },
+  {
+    path: '*',
+    name: 'non-existing',
+    component: NonExisting
   }
 
 ]
