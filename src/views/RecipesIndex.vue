@@ -30,6 +30,7 @@
     <div class="container" v-if="isLoaded && recipes.length > 0">
       <!-- Search Results -->
       <p v-if="this.$route.query.search">Search results for: "{{ this.$route.query.search }}"</p>
+      <!-- Cards -->
       <div class="row">
         <div class="col-12 col-lg-4 mb-4" v-for="recipe in orderBy(recipes, sortKey, sortOrder)">
           <router-link v-bind:to="`/recipes/${recipe.id}`">

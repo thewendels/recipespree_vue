@@ -23,13 +23,25 @@
       </div>
     </div>
 
-    <!-- Title and Tag Operations (Edit, Delete, Home) -->
+    <!-- Title, Sort, and Tag Operations (Edit, Delete, Home) -->
     <section class="bg-theme-color-light p-0 rounded" >
       <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
+        <!-- Title -->
         <h1 class="h3 mb-0">
           {{ tag.name }}
         </h1>
+        <!-- Sort -->
         <div class="d-flex">
+          <div class="d-flex">
+            <h6 class="m-2">Sort:</h6>
+            <select v-model.lazy="selected" class="px-2 mx-2 rounded">
+              <option value="alpha"> A - Z </option>
+              <option value="revAlpha"> Z - A </option>
+              <option value="newest"> Newest </option>
+              <option value="oldest"> Oldest </option>
+            </select>
+          </div>
+          <!-- Light pink buttons -->
           <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Edit" v-bind:to="`/tags/${tag.id}/edit`">
             <i class="fi fi-pencil"></i>
           </router-link>
@@ -45,9 +57,9 @@
 
     <!-- Cards -->
     <div class="container">
-      <!-- Search Results -->
+      <!-- Recipes labeled with this tag -->
       <div class="row">
-        <div class="col-12 col-lg-4 mb-4" v-for="recipe in tag.recipes">
+        <div class="col-12 col-lg-4 mb-4" v-for="recipe in orderBy(tag.recipes, sortKey, sortOrder)">
           <router-link v-bind:to="`/recipes/${recipe.id}`">
             <div class="card b-0 shadow-primary-xs shadow-primary-md-hover transition-all-ease-250 transition-hover-top h3-100 rounded overflow-hidden h-100">
               <div class="clearfix">
@@ -76,20 +88,43 @@
 
 <script>
 import axios from "axios";
+import Vue2Filters from 'vue2-filters';
 export default {
   data: function() {
     return {
       tag: {},
       recipe: {},
       recipes: [],
+      selected: "alpha",
     };
   },
+  mixins: [Vue2Filters.mixin],
   created: function() {
     axios
       .get("/api/tags/" + this.$route.params.id).then(response => {
         console.log("tags show", response);
         this.tag = response.data;
       });
+  },
+  computed: {
+    sortKey: function() {
+      if (this.selected === "alpha" || this.selected === "revAlpha") {
+        return "name";
+      } else if (this.selected === "newest" || this.selected === "oldest") {
+        return "id";
+      } else {
+        return "";
+      }   
+    },
+    sortOrder: function() {
+      if (this.selected === "alpha" || this.selected === "oldest") {
+        return 1;
+      } else if (this.selected === "revAlpha" || this.selected === "newest") {
+        return -1;
+      } else {
+        return "";
+      }    
+    },
   },
   methods: {
     showTagDeleteModal: function() {
