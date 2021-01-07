@@ -10,6 +10,15 @@
       </div>
 		</section>
 
+    <!-- Message (if user has no tags) -->
+    <div v-if="isLoaded && tags.length == 0" class="my-5 mx-3 d-flex align-items-center justify-content-center">
+      <div>
+        <p>To create tags, click on <strong>Add a Recipe</strong> above.</p>
+        <p>Once your recipe is created, add tags to organize it within your collection. You might categorize it by course (Entree, Dessert), type of cuisine (Italian, Thai), style (Healthy, Special Occasion, Quick and Easy, Vegetarian), but ultimately it's up to you!</p>
+        <p>Once you have tags, you'll be able to access them here.</p>
+      </div>
+    </div>
+
     <!-- Columns of buttons -->
     <div class="container mx-5 my-3" v-if="isLoaded && tags.length > 0">
       <div class="row align-items-center">
