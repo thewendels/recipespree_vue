@@ -100,7 +100,7 @@ export default {
         .then(response => {
           console.log("users destroy", response);
           localStorage.removeItem("jwt");
-          this.$router.push("/signup");
+          this.$router.push("/login");
         });
     },
   },
