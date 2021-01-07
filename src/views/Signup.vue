@@ -40,7 +40,7 @@ export default {
     };
   },
   methods: {
-    submit: function() {
+    submitSignin: function() {
       var params = {
         username: this.username,
         email: this.email,

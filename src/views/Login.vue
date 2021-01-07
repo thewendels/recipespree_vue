@@ -26,10 +26,10 @@
             <div class="accordion" id="accordionAccount">
               
               <!-- Sign In -->
-              <form class="collapse bs-validate show" v-on:submit.prevent="submit()" action="#" id="accordionAccountSignIn" data-parent="#accordionAccount">
+              <form class="collapse bs-validate show" v-on:submit.prevent="submitLogin()" id="accordionAccountSignIn" data-parent="#accordionAccount">
 
                 <!-- Title -->
-                <h2 class="dark-text mb-1">Sign In</h2>
+                <h2 class="dark-text mb-2">Sign In</h2>
 
                 <!-- Form for email and password -->
                 <div class="p-5 rounded shadow-xs">
@@ -49,10 +49,12 @@
                     </a> -->
                   </div>
 
+                  <!-- Sign In button -->
                   <button type="submit" class="btn btn-outline-dark btn-block btn-pill">
                     Sign In
                   </button>
 
+                  <!-- Toggle to Signup -->
                   <div class="text-center mt--30">
                     <a href="#accordionAccountSignUp" class="d-block text-primary text-decoration-none" data-toggle="collapse" aria-expanded="true" aria-controls="accordionAccountSignUp">
                       Don't have an account yet?
@@ -91,57 +93,41 @@
               <!-- /Password Reset -->
 
               <!-- Sign Up -->
-              <form class="collapse bs-validate" novalidate method="post" action="#" id="accordionAccountSignUp" data-parent="#accordionAccount">
+              <form class="collapse bs-validate" novalidate method="post" v-on:submit.prevent="submitSignup()" id="accordionAccountSignUp" data-parent="#accordionAccount">
                 
-                <!-- title -->
-                <h2 class="text-primary mb-1">
-                  <span class="font-weight-normal">Sign</span> Up
-                </h2>
-                <p class="mb-5 font-weight-medium b-0">
-                  Get started! It's Free!
-                </p>
-
+                <!-- Title -->
+                <h2 class="dark-text mb-2">Sign Up</h2>
                 <div class="p-5 rounded shadow-xs">
-
-
-                  <!--
-                  <p class="text-danger">
-                    Ups! Please check again
-                  </p>
-                  -->
-
-
+                  
+                  <!-- Form -->
                   <div class="form-label-group mb-3">
-                    <input required placeholder="First Name" id="signup_first_name" name="signup_first_name" type="text" class="form-control">
-                    <label for="signup_first_name">First Name</label>
+                    <input required placeholder="Username" id="username" name="username" type="text" class="form-control" v-model="username">
+                    <label for="username">Username</label>
+                  </div>
+                  
+                  <div class="form-label-group mb-3">
+                    <input required placeholder="Email" id="email" v-model="email" name="email" type="email" class="form-control">
+                    <label for="email">Email</label>
                   </div>
 
                   <div class="form-label-group mb-3">
-                    <input required placeholder="Last Name" id="signup_last_name" name="signup_last_name" type="text" class="form-control">
-                    <label for="signup_last_name">Last Name</label>
+                    <input required placeholder="Password" id="password" v-model="password" name="password" type="password" class="form-control">
+                    <label for="password">Password</label>
                   </div>
 
                   <div class="form-label-group mb-3">
-                    <input required placeholder="Email" id="signup_email" name="signup_email" type="email" class="form-control">
-                    <label for="signup_email">Email</label>
+                    <input required placeholder="Password Confirmation" id="passwordConfirmation" v-model="passwordConfirmation" name="passwordConfirmation" type="password" class="form-control">
+                    <label for="passwordConfirmation">Password Confirmation</label>
                   </div>
 
-          
-
-                  <div class="input-group-over">
-                    <div class="form-label-group mb-3">
-                      <input required placeholder="Password" id="signup_password" name="signup_password" type="password" class="form-control">
-                      <label for="signup_password">Password</label>
-                    </div>
-
-                  </div>
-
-                  <button type="submit" class="btn btn-primary btn-soft btn-block">
+                  <!-- Sign Up button -->
+                  <button type="submit" class="btn btn-outline-dark btn-block btn-pill">
                     Sign Up
                   </button>
 
+                  <!-- Toggle to Login -->
                   <div class="text-center mt--30">
-                    <a href="#accordionAccountSignIn" class="d-block text-muted text-decoration-none" data-toggle="collapse" aria-expanded="true" aria-controls="accordionAccountSignIn">
+                    <a href="#accordionAccountSignIn" class="d-block text-primary text-decoration-none" data-toggle="collapse" aria-expanded="true" aria-controls="accordionAccountSignIn">
                       Back to Sign In
                     </a>
                   </div>
@@ -157,38 +143,6 @@
         </div>
       </div>
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <form v-on:submit.prevent="submit()">
-      <h1>Login</h1>
-      
-      <div class="form-group">
-        <label>Email: </label>
-        <input type="email" class="form-control" v-model="email">
-      </div> -->
-      <div class="form-group">
-        <label>Password: </label>
-        <input type="password" class="form-control" v-model="password">
-      </div>
-      <input type="submit" class="btn btn-primary" value="Submit">
-    </form>
   </div>
 </template>
 
@@ -204,19 +158,21 @@ import axios from "axios";
 export default {
   data: function() {
     return {
+      username: "",
       email: "",
       password: "",
+      passwordConfirmation: "",
       errors: []
     };
   },
   methods: {
-    submit: function() {
-      var params = {
+    submitLogin: function() {
+      var loginParams = {
         email: this.email,
         password: this.password
       };
       axios
-        .post("/api/sessions", params)
+        .post("/api/sessions", loginParams)
         .then(response => {
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.jwt;
@@ -225,6 +181,30 @@ export default {
         })
         .catch(error => {
           this.errors = ["Invalid email or password."];
+          this.email = "";
+          this.password = "";
+        });
+    },
+    submitSignup: function() {
+      var params = {
+        username: this.username,
+        email: this.email,
+        password: this.password,
+        password_confirmation: this.passwordConfirmation
+      };
+      axios
+        .post("/api/users", params)
+        .then(response => {
+          return axios.post("/api/sessions", params);
+        })
+        .then(response => {
+          axios.defaults.headers.common["Authorization"] =
+            "Bearer " + response.data.jwt;
+          localStorage.setItem("jwt", response.data.jwt);
+          this.$router.push("/recipes");
+        })
+        .catch(error => {
+          this.errors = error.response.data.errors;
           this.email = "";
           this.password = "";
         });
