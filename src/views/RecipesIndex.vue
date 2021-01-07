@@ -26,6 +26,17 @@
       </div>
     </div>
 
+    <!-- Message (if user has no recipes) -->
+    <div v-if="isLoaded && !this.$route.query.search && recipes.length == 0" class="my-5 mx-3 d-flex align-items-center justify-content-center">
+      <h5 class="mx-3 align-items-start" >Welcome to RecipeSpree!</h5>
+      <div>
+        <p>To get started, click on <strong>Add a Recipe</strong> above. You can fill in your recipe's details one field at a time, or import the recipe by entering its URL.</p>
+        <p>Once your recipe is created, add tags to organize it within your collection. You might categorize it by course (Entree, Dessert), type of cuisine (Italian, Thai), style (Healthy, Special Occasion, Quick and Easy, Vegetarian), but ultimately it's up to you!</p>
+        <p>You can click on a tag name to access all the recipes that share it.</p>
+        <p>Enjoy!</p>
+      </div>
+    </div>
+
     <!-- Cards (search results and cards) -->
     <div class="container">
       <!-- Search Results -->
@@ -52,17 +63,6 @@
             </router-link>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Message (if user has no recipes) -->
-    <div v-if="isLoaded && this.$route.query.search == '' && recipes.length == 0" class="my-5 mx-3 d-flex align-items-center justify-content-center">
-      <h5 class="mx-3 align-items-start" >Welcome to RecipeSpree!</h5>
-      <div>
-        <p>To get started, click on <strong>Add a Recipe</strong> above. You can fill in your recipe's details one field at a time, or import the recipe by entering its URL.</p>
-        <p>Once your recipe is created, add tags to organize it within your collection. You might categorize it by course (Entree, Dessert), type of cuisine (Italian, Thai), style (Healthy, Special Occasion, Quick and Easy, Vegetarian), but ultimately it's up to you!</p>
-        <p>You can click on a tag name to access all the recipes that share it.</p>
-        <p>Enjoy!</p>
       </div>
     </div>
 
