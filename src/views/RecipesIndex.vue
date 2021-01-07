@@ -19,6 +19,13 @@
       </div>
 		</section>
     
+    <!-- Waiting for recipes to load -->
+    <div v-if="!isLoaded" class="text-center">
+      <div class="fs--30 fi fi-spin fi-loading-dots text-pink" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    
     <!-- Cards (if user has recipes) -->
     <div class="container" v-if="isLoaded && recipes.length > 0">
       <!-- Search Results -->

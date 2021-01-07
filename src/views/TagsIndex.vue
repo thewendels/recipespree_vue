@@ -1,6 +1,13 @@
 <template>
   <div class="tags-index">
     
+    <!-- Waiting for tags to load -->
+    <div v-if="!isLoaded" class="text-center">
+      <div class="fs--30 fi fi-spin fi-loading-dots text-pink" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    
     <!-- Title and Sort -->
     <section class="bg-theme-color-light p-0 rounded">
       <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
@@ -15,7 +22,7 @@
       <div>
         <p>To create tags, click on <strong>Add a Recipe</strong> above.</p>
         <p>Once your recipe is created, add tags to organize it within your collection. You might categorize it by course (Entree, Dessert), type of cuisine (Italian, Thai), style (Healthy, Special Occasion, Quick and Easy, Vegetarian), but ultimately it's up to you!</p>
-        <p>Once you have tags, you'll be able to access them here.</p>
+        <p>Once you have created one or more tags, you'll be able to access them here.</p>
       </div>
     </div>
 
