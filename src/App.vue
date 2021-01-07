@@ -1,12 +1,6 @@
 <template>
   <div class="bg-theme-color-light container pt-3" id="app">
-    <!-- <div id="nav" class="pt-3"> 
-       
-      <router-link v-if="!isLoggedIn()" to="/signup">Sign Up</router-link> |  
-      <router-link v-if="!isLoggedIn()" to="/login">Log In</router-link>
-      
-    </div> -->
-
+    
     <!-- Navbar -->
     <nav v-if="isLoggedIn()" class="navbar navbar-expand-lg navbar-light justify-content-lg-between justify-content-lg-inherit pt-2 pb-2 shadow-md border rounded bg-light">
 
