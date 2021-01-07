@@ -10,7 +10,7 @@
     </div> -->
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light justify-content-lg-between justify-content-lg-inherit pt-2 pb-2 shadow-md border rounded bg-light">
+    <nav v-if="isLoggedIn()" class="navbar navbar-expand-lg navbar-light justify-content-lg-between justify-content-lg-inherit pt-2 pb-2 shadow-md border rounded bg-light">
 
       <!-- Logo -->
       <router-link class="navbar-brand mr-0 ml-2" to="/recipes">
@@ -89,18 +89,18 @@
 		</nav>
 
     <!-- Citrus banner top -->
-    <section class="bg-theme-color-light p-0 rounded" style="background-image:url(/assets/images/citrus.jpg); background-size:cover; height:150px"></section>				
+    <section v-if="isLoggedIn()" class="bg-theme-color-light p-0 rounded" style="background-image:url(/assets/images/citrus.jpg); background-size:cover; height:150px"></section>				
     
+    <!-- This renders whichever route I'm on (like /recipes will show RecipesIndex.vue) -->
     <router-view/>
 
     <!-- Citrus banner bottom-->
-    <section class="bg-theme-color-light p-0 rounded" style="background-image:url(/assets/images/citrus2.jpg); background-size:cover; height:150px"></section>	
+    <section v-if="isLoggedIn()" class="bg-theme-color-light p-0 rounded" style="background-image:url(/assets/images/citrus2.jpg); background-size:cover; height:150px"></section>	
 
     <!-- Footer -->
     <footer class="pt-2 pb-2 shadow-md border rounded bg-light d-flex align-items-center justify-content-center">
       <p style="font-size:0.5rem" class="mb-0">© RecipeSpree.</p>
     </footer>
-
   </div>
 </template>
 
