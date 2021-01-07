@@ -1,9 +1,7 @@
 <template>
   <div class="bg-theme-color-light container pt-3" id="app">
     <!-- <div id="nav" class="pt-3"> 
-      
-      <router-link v-if="isLoggedIn()"
-      to="/users">Profile</router-link> | 
+       
       <router-link v-if="!isLoggedIn()" to="/signup">Sign Up</router-link> |  
       <router-link v-if="!isLoggedIn()" to="/login">Log In</router-link>
       
