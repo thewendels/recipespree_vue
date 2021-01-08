@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <!-- Search results and cards/list -->
+    <!-- Search results and List/Cards -->
     <div class="container">
       <!-- Search Results -->
       <div class="m-3">

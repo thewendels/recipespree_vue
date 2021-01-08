@@ -30,8 +30,22 @@
         <h1 class="h3 mb-0">
           {{ tag.name }}
         </h1>
-        <!-- Sort -->
+        <!-- Radios, Sort, Buttons -->
         <div class="d-flex">
+          <!-- Radios -->
+          <div class="btn-group mt-2">
+            <!-- Radio Button - Card -->
+            <label class="form-radio form-radio-pink form-radio-bordered">
+              <input type="radio" name="card" value ="card" v-model="radio" checked>
+              <i></i> <span>Card View</span>
+            </label>
+            <!-- Radio Button - List -->
+            <label class="form-radio form-radio-pink form-radio-bordered">
+              <input type="radio" name="list" value ="list" v-model="radio">
+              <i></i> <span>List View</span>
+            </label>
+          </div>
+          <!-- Sort -->
           <div class="d-flex">
             <h6 class="m-2">Sort:</h6>
             <select v-model.lazy="selected" class="px-2 mx-2 rounded">
@@ -62,10 +76,21 @@
       </div>
     </div>
 
-    <!-- Cards -->
+    <!-- List/Cards with this Tag -->
     <div v-if="isLoaded" class="container">
-      <!-- Recipes labeled with this tag -->
-      <div class="row">
+      <!-- List  -->
+      <div v-if="radio == 'list'" class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="container shadow-xs shadow-primary-xs-hover px-4 py-3 mb-4 rounded" v-for="recipe in orderBy(tag.recipes, sortKey, sortOrder)">
+          <router-link class="d-flex align-items-center justify-content-between" v-bind:to="`/recipes/${recipe.id}`">
+            <div>
+              <h5 style="color: #212529">{{ recipe.name }}</h5>
+              <p>{{ recipe.source }}</p>
+            </div>
+          </router-link>
+        </div>
+      </div>
+      <!-- Cards -->
+      <div class="row" v-if="radio == 'card'">
         <div class="col-12 col-lg-4 mb-4" v-for="recipe in orderBy(tag.recipes, sortKey, sortOrder)">
           <router-link v-bind:to="`/recipes/${recipe.id}`">
             <div class="card b-0 shadow-primary-xs shadow-primary-md-hover transition-all-ease-250 transition-hover-top h3-100 rounded overflow-hidden h-100">
@@ -103,6 +128,7 @@ export default {
       recipe: {},
       recipes: [],
       selected: "alpha",
+      radio: "card",
       isLoaded: false,
     };
   },
