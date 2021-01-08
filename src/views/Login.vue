@@ -1,10 +1,49 @@
 <template>
   <div class="login">
 
-    <!-- DEAL WITH errors
-    <ul>
-      <li class="text-danger" v-for="error in errors">{{ error }}</li>
-    </ul> -->
+    <!-- Login Error Modal -->
+    <div class="modal fade" id="loginErrorModal" tabindex="-1" role="dialog" aria-labelledby="login error modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginError">Error</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Something went wrong!</p>
+            <p>Your email or password is invalid.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-pink" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Signup Error Modal -->
+    <div class="modal fade" id="signupErrorModal" tabindex="-1" role="dialog" aria-labelledby="signup error modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="signupError">Error</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Something went wrong!</p>
+            <ul>
+              <li style="color: #6c757d" v-for="error in errors">{{ error }}</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-pink" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Title -->
     <section class="bg-theme-color-light position-relative py-3">
@@ -93,7 +132,7 @@
               <!-- /Password Reset -->
 
               <!-- Sign Up -->
-              <form class="collapse bs-validate" novalidate method="post" v-on:submit.prevent="submitSignup()" id="accordionAccountSignUp" data-parent="#accordionAccount">
+              <form class="collapse bs-validate" v-on:submit.prevent="submitSignup()" id="accordionAccountSignUp" data-parent="#accordionAccount">
                 
                 <!-- Title -->
                 <h2 class="dark-text mb-2">Sign Up</h2>
@@ -106,12 +145,12 @@
                   </div>
                   
                   <div class="form-label-group mb-3">
-                    <input required placeholder="Email" id="email" v-model="email" name="email" type="email" class="form-control">
+                    <input required placeholder="Email" id="email" v-model="signupEmail" name="email" type="email" class="form-control">
                     <label for="email">Email</label>
                   </div>
 
                   <div class="form-label-group mb-3">
-                    <input required placeholder="Password" id="password" v-model="password" name="password" type="password" class="form-control">
+                    <input required placeholder="Password" id="password" v-model="signupPassword" name="password" type="password" class="form-control">
                     <label for="password">Password</label>
                   </div>
 
@@ -160,7 +199,9 @@ export default {
     return {
       username: "",
       email: "",
+      signupEmail: "",
       password: "",
+      signupPassword: "",
       passwordConfirmation: "",
       errors: []
     };
@@ -181,15 +222,14 @@ export default {
         })
         .catch(error => {
           this.errors = ["Invalid email or password."];
-          this.email = "";
-          this.password = "";
+          $('#loginErrorModal').modal('show');
         });
     },
     submitSignup: function() {
       var params = {
         username: this.username,
-        email: this.email,
-        password: this.password,
+        email: this.signupEmail,
+        password: this.signupPassword,
         password_confirmation: this.passwordConfirmation
       };
       axios
@@ -205,8 +245,7 @@ export default {
         })
         .catch(error => {
           this.errors = error.response.data.errors;
-          this.email = "";
-          this.password = "";
+          $('#signupErrorModal').modal('show');
         });
     }
   }
