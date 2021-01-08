@@ -10,8 +10,11 @@
       </router-link>
 
       <!-- Toggler to hamburger menu -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" data-toggle-container-class="bg-white shadow-md border animate-fadein rounded p-3" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="group-icon px-2 py-2">
+          <i class="fi fi-bars-2 text-pink"></i>
+          <i class="fi fi-close text-pink"></i>
+        </span>
       </button>
 
       <!-- Container for everything that should go in toggler -->
