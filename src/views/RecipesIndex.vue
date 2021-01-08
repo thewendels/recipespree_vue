@@ -37,13 +37,28 @@
       </div>
     </div>
 
-    <!-- Cards (search results and cards) -->
+    <!-- Search results and cards/list -->
     <div class="container">
       <!-- Search Results -->
       <div class="m-3">
         <p v-if="this.$route.query.search && recipes.length == 0">There are no search results for: "{{ this.$route.query.search }}"</p>
         <p v-else-if="this.$route.query.search">Search results for: "{{ this.$route.query.search }}"</p>
       </div>
+      <!-- List -->
+      <div v-if="isLoaded && recipes.length > 0" class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="container shadow-xs shadow-primary-xs-hover px-4 py-3 mb-4 rounded" v-for="recipe in orderBy(recipes, sortKey, sortOrder)">
+          <router-link class="d-flex align-items-center justify-content-between" v-bind:to="`/recipes/${recipe.id}`">
+            <div>
+              <h5 style="color: #212529">{{ recipe.name }}</h5>
+              <p>{{ recipe.source }}</p>
+            </div>
+            <div class="d-flex justify-content-end align-items-center">
+              <router-link v-if="recipe.tags.length !== 0" v-for="tag in recipe.tags" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0" style="font-size:0.75rem" v-bind:to="`/tags/${tag.id}`" :key="tag.id">{{ tag.name }}</router-link>
+            </div>
+          </router-link>
+        </div>
+      </div>
+      
       <!-- Cards -->
       <div v-if="isLoaded && recipes.length > 0">
         <div class="row">
