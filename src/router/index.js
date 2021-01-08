@@ -93,4 +93,13 @@ const router = new VueRouter({
   }
 });
 
+router.beforeEach((to, from, next) => {
+  let isAuthenticated = localStorage.getItem("jwt");
+  if (to.name !== 'login' && !isAuthenticated) {
+    next({ name: 'login' });
+  } else {
+    next();
+  }
+});
+
 export default router;
