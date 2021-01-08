@@ -37,12 +37,12 @@
             <!-- Radio Button - Card -->
             <label class="form-radio form-radio-pink form-radio-bordered">
               <input type="radio" name="card" value ="card" v-model="radio" checked>
-              <i></i> <span>Card View</span>
+              <i></i> <span>Tiles</span>
             </label>
             <!-- Radio Button - List -->
             <label class="form-radio form-radio-pink form-radio-bordered">
               <input type="radio" name="list" value ="list" v-model="radio">
-              <i></i> <span>List View</span>
+              <i></i> <span>List</span>
             </label>
           </div>
           <!-- Sort -->
