@@ -7,11 +7,11 @@
     </ul> -->
 
     <!-- Title -->
-    <section class="bg-theme-color-light position-relative py-4">
+    <section class="bg-theme-color-light position-relative py-3">
       <div class="container">
 
         <h1 class="h3">
-          RecipeSpree
+          Welcome to RecipeSpree
         </h1>
 
       </div>
