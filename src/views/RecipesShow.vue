@@ -48,9 +48,7 @@
     <section class="bg-theme-color-light p-0 rounded">
       <div class="container py-3 d-flex mb-3 justify-content-between align-items-center">
         <div>
-          <h1 class="h3 mb-2">
-            {{ recipe.name }}
-          </h1>
+          <h1 class="h3 mb-2">{{ recipe.name }}</h1>
           <a v-if="recipe.recipe_url && recipe.source" :href="recipe.recipe_url" target="_blank"><h5>{{ recipe.source }}</h5></a>
           <a v-else-if="!recipe.source && recipe.recipe_url" :href="recipe.recipe_url" target="_blank"><h5>Source: {{ recipe.recipe_url }}</h5></a>
           <h5 v-else-if="!recipe.recipe_url && recipe.source">Source: {{ recipe.source }}</h5>
