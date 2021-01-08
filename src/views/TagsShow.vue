@@ -113,6 +113,12 @@ export default {
         console.log("tags show", response);
         this.tag = response.data;
         this.isLoaded = true;
+      })
+      .catch(error => {
+        console.log("tags show error", error.response);
+        if (error.response.status === 404) {
+          this.$router.push("/404");
+        }
       });
   },
   computed: {

@@ -18,7 +18,7 @@
       </button>
 
       <!-- Container for everything that should go in toggler -->
-      <div class="collapse navbar-collapse d-flex-lg justify-content-lg-between" id="collapsibleNavbar">
+      <div class="collapse navbar-collapse d-flex-lg justify-content-lg-between" id="collapsibleNavbar" style="top: 122px">
 
         <!-- Text Links -->
         <ul class="nav navbar-animate-fadein flex-column flex-lg-row">

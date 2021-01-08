@@ -194,6 +194,12 @@ export default {
         console.log("recipes show", response);
         this.recipe = response.data;
         this.isLoaded = true;
+      })
+      .catch(error => {
+        console.log("recipes show error", error.response);
+        if (error.response.status === 404) {
+          this.$router.push("/404");
+        }
       });
     axios
       .get("/api/tags/")
