@@ -7,14 +7,28 @@
         <h1 class="h3 mb-0">
           Recipes
         </h1>
-        <div class="d-flex">
-          <h6 class="m-2">Sort:</h6>
-          <select v-model.lazy="selected" class="px-2 rounded">
-            <option value="newest"> Newest </option>
-            <option value="oldest"> Oldest </option>
-            <option value="alpha"> A - Z </option>
-            <option value="revAlpha"> Z - A </option>
-          </select>
+        <div class="d-flex align-items-center">
+          <div class="btn-group mt-2">
+            <!-- Radio Button - Card -->
+            <label class="form-radio form-radio-pink form-radio-bordered">
+              <input type="radio" name="card" value ="card" v-model="radio" checked>
+              <i></i> <span>Card View</span>
+            </label>
+            <!-- Radio Button - List -->
+            <label class="form-radio form-radio-pink form-radio-bordered">
+              <input type="radio" name="list" value ="list" v-model="radio">
+              <i></i> <span>List View</span>
+            </label>
+          </div>
+          <div class="d-flex">
+            <h6 class="m-2">Sort:</h6>
+            <select v-model.lazy="selected" class="px-2 rounded">
+              <option value="newest"> Newest </option>
+              <option value="oldest"> Oldest </option>
+              <option value="alpha"> A - Z </option>
+              <option value="revAlpha"> Z - A </option>
+            </select>
+          </div>
         </div>
       </div>
 		</section>
@@ -45,7 +59,7 @@
         <p v-else-if="this.$route.query.search">Search results for: "{{ this.$route.query.search }}"</p>
       </div>
       <!-- List -->
-      <div v-if="isLoaded && recipes.length > 0" class="col-12 col-sm-12 col-md-12 col-lg-12">
+      <div v-if="radio == 'list' && isLoaded && recipes.length > 0" class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="container shadow-xs shadow-primary-xs-hover px-4 py-3 mb-4 rounded" v-for="recipe in orderBy(recipes, sortKey, sortOrder)">
           <router-link class="d-flex align-items-center justify-content-between" v-bind:to="`/recipes/${recipe.id}`">
             <div>
@@ -60,7 +74,7 @@
       </div>
       
       <!-- Cards -->
-      <div v-if="isLoaded && recipes.length > 0">
+      <div v-if="radio == 'card' && isLoaded && recipes.length > 0">
         <div class="row">
           <div class="col-12 col-lg-4 mb-4" v-for="recipe in orderBy(recipes, sortKey, sortOrder)">
             <router-link v-bind:to="`/recipes/${recipe.id}`">
@@ -104,6 +118,7 @@ export default {
       recipes: [],
       isLoaded: false,
       selected: "newest",
+      radio: "card",
     };
   },
   mixins: [Vue2Filters.mixin],
