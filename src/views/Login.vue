@@ -142,6 +142,9 @@
                   <div class="form-label-group mb-3">
                     <input required placeholder="Username" id="username" name="username" type="text" class="form-control" v-model="username">
                     <label for="username">Username</label>
+                    <small class="text-muted" v-if="username.length > 20">
+                      Cannot exceed 20 characters
+                    </small>
                   </div>
                   
                   <div class="form-label-group mb-3">
@@ -152,6 +155,12 @@
                   <div class="form-label-group mb-3">
                     <input required placeholder="Password" id="password" v-model="signupPassword" name="password" type="password" class="form-control">
                     <label for="password">Password</label>
+                    <small class="text-muted" v-if="signupPassword.length > 3 && signupPassword.length < 8">
+                      Must be at least 8 characters
+                    </small>
+                    <small class="text-muted" v-if="signupPassword.length > 20">
+                      Cannot exceed 20 characters
+                    </small>
                   </div>
 
                   <div class="form-label-group mb-3">
