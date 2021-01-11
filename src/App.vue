@@ -37,9 +37,11 @@
         <ul class="list-inline list-unstyled mb-0 d-flex align-items-lg-center flex-column flex-lg-row">
           
           <!-- Search -->
-          <form v-on:submit.prevent="searchRecipes()" class="mx-2"> 
-            <input type="text" v-model="search" class="mx-2">
-            <input type="submit" data-toggle="collapse" data-target=".navbar-collapse.show" value="Search" class="btn btn-sm btn-outline-pink btn-pill mb-1 mr-1 ml-0"/>
+          <form v-on:submit.prevent="searchRecipes()" class="d-none d-lg-flex mx-2"> 
+            <input v-if="showSearchField" type="text" v-model="search" class="mx-2 transition-all-ease-150">
+            <button v-on:click="showSearch()" type="submit" class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="collapse" data-target=".navbar-collapse.show" value="Search">
+              <i class="fi fi-search"></i>
+            </button>
           </form>
 
           <!-- Account Options Dropdown - Larger Breakpoints -->
@@ -70,6 +72,12 @@
 
           <!-- Account Options - Mobile -->
           <div class="d-lg-none">
+            <form v-on:submit.prevent="searchRecipes()"> 
+              <input type="text" v-model="search" class="mx-2">
+              <button type="submit" class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="collapse" data-target=".navbar-collapse.show" value="Search">
+                <i class="fi fi-search"></i>
+              </button>
+            </form>
             <router-link to="/users" title="Profile" class="dropdown-footer dropdown-custom-ignore" data-toggle="collapse" data-target=".navbar-collapse.show">
             Profile
             </router-link>
@@ -107,6 +115,7 @@ export default {
   data: function() {
     return {
       search: "",
+      showSearchField: false,
     };   
   },
   methods: {
@@ -116,6 +125,9 @@ export default {
       } else {
         return false;
       }
+    },
+    showSearch: function() {
+      this.showSearchField = !(this.showSearchField);
     },
     searchRecipes() {
       this.$router.push({ path: '/recipes', query: { search: this.search }});
