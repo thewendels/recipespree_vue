@@ -120,7 +120,7 @@
                   <label for="text">Tag Name </label>
                 </div>
                 <div>
-                  <button v-on:click="showTagManager() "class="btn btn-pink btn-pill">Cancel</button>
+                  <button type="button" v-on:click="showTagManager() "class="btn btn-pink btn-pill">Cancel</button>
                   <input type="submit" value="Submit" class="btn btn-pink btn-pill"/>
                 </div>
               </div>
