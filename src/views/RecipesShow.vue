@@ -120,7 +120,7 @@
                   <label for="text">Tag Name </label>
                 </div>
                 <div>
-                  <button v-on:click="showTagManager() "class="btn btn-pink btn-pill" >Cancel</button>
+                  <button v-on:click="showTagManager() "class="btn btn-pink btn-pill">Cancel</button>
                   <input type="submit" value="Submit" class="btn btn-pink btn-pill"/>
                 </div>
               </div>
@@ -147,7 +147,7 @@
       </div>
       <div v-if="recipe.notes" class="dark-text">
         <h5 class="mt-5 mb-3">Notes</h5>
-        <p>{{ recipe.notes }}</p>
+        <p class="dark-text">{{ recipe.notes }}</p>
       </div>
       <!-- Buttons -->
       <div class="text-center my-4">
@@ -215,6 +215,7 @@ export default {
     showTagManager: function() {
       this.tagManagerAppear = !(this.tagManagerAppear);
       this.dropdownSelection = "";
+      this.tagInput = "";
     },
     createRecipeTag: function() {
       let tag;
@@ -245,7 +246,7 @@ export default {
       var params = {
         recipe_id: this.recipe.id,
         tag_id: tag.id
-      }
+      };
       axios
         .delete("/api/recipe_tags/", { data: params })
         .then(response => {
