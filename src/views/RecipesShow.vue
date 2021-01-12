@@ -50,8 +50,8 @@
         <div>
           <h1 class="h3 mb-2">{{ recipe.name }}</h1>
           <a v-if="recipe.recipe_url && recipe.source" :href="recipe.recipe_url" target="_blank"><h5>{{ recipe.source }}</h5></a>
-          <a v-else-if="!recipe.source && recipe.recipe_url" :href="recipe.recipe_url" target="_blank"><h5>Source: {{ recipe.recipe_url }}</h5></a>
-          <h5 v-else-if="!recipe.recipe_url && recipe.source">Source: {{ recipe.source }}</h5>
+          <a v-else-if="!recipe.source && recipe.recipe_url" :href="recipe.recipe_url" target="_blank"><h5>{{ recipe.recipe_url }}</h5></a>
+          <h5 v-else-if="!recipe.recipe_url && recipe.source">{{ recipe.source }}</h5>
         </div>
         <div class="d-flex">
           <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Edit" v-bind:to="`/recipes/${recipe.id}/edit`">
