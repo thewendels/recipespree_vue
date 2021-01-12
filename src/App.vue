@@ -38,11 +38,14 @@
           
           <!-- Search -->
           <form v-on:submit.prevent="searchRecipes()" class="mx-2"> 
-            <input type="text" v-model="search" class="mx-2">
-            <button type="submit" data-toggle="collapse" data-target=".navbar-collapse.show" value="Search" class="btn btn-sm rounded-circle btn-pink btn-soft-static">
+            <input v-if="searchFormAppears" type="text" v-model="search" class="mx-2">
+            <button v-if="searchFormAppears" type="submit" data-toggle="collapse" data-target=".navbar-collapse.show" value="Search" class="btn btn-sm rounded-circle btn-pink btn-soft-static">
               <i class="fi fi-search"></i>
             </button>
           </form>
+          <button v-if="!searchFormAppears" v-on:click="showSearchForm()" class="btn btn-sm rounded-circle btn-pink btn-soft-static">
+            <i class="fi fi-search"></i>
+          </button>
 
           <!-- Account Options Dropdown - Larger Breakpoints -->
           <ul class="d-none d-lg-flex list-inline list-unstyled mb-0 align-items-end mr-2">
@@ -109,6 +112,7 @@ export default {
   data: function() {
     return {
       search: "",
+      searchFormAppears: false,
     };   
   },
   methods: {
@@ -119,9 +123,13 @@ export default {
         return false;
       }
     },
+    showSearchForm: function () {
+      this.searchFormAppears = !(this.searchFormAppears);
+    },
     searchRecipes() {
       this.$router.push({ path: '/recipes', query: { search: this.search }});
       this.search = "";
+      this.searchFormAppears = !(this.searchFormAppears);
     }
   }
 };
