@@ -204,7 +204,7 @@ export default {
     axios
       .get("/api/tags/")
       .then(response => {
-        console.log("tags show", response);
+        console.log("tags index", response);
         this.tags = response.data;
       });
   },
@@ -233,6 +233,13 @@ export default {
         .then(response => {
           console.log("recipetags create", response.data);
           this.recipe = response.data;
+        })
+        .then(response => {
+          return axios.get("/api/tags/");
+        })
+        .then(response => {
+          console.log("tags index", response);
+          this.tags = response.data;
           this.dropdownSelection = "";
           this.tagInput = "";
           this.tagManagerAppear = false;
@@ -252,7 +259,7 @@ export default {
         .then(response => {
           console.log("recipetags destroy",response.data);
           this.recipe = response.data;
-        })
+        });
     },
     destroyRecipe: function(recipe) {
       axios
