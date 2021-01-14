@@ -7,7 +7,7 @@
           <h1 class="h3 mb-0">Page not found!</h1>
         </div>
         <div class="d-flex">
-          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Home" to="/recipes/">
+          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" to="/recipes/">
             <i class="fi fi-home"></i>
           </router-link>
         </div>

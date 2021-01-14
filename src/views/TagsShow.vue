@@ -56,13 +56,13 @@
             </select>
           </div>
           <!-- Light pink buttons -->
-          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Edit" v-bind:to="`/tags/${tag.id}/edit`">
+          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" v-bind:to="`/tags/${tag.id}/edit`">
             <i class="fi fi-pencil"></i>
           </router-link>
-          <button class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Delete" v-on:click="showTagDeleteModal()">
+          <button class="btn btn-sm rounded-circle btn-pink btn-soft-static" v-on:click="showTagDeleteModal()">
             <i class="fi fi-thrash"></i>
           </button>
-          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Home" to="/recipes/">
+          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" to="/recipes/">
             <i class="fi fi-home"></i>
           </router-link>
         </div>

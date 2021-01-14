@@ -54,13 +54,13 @@
           <h5 v-else-if="!recipe.recipe_url && recipe.source">{{ recipe.source }}</h5>
         </div>
         <div class="d-flex">
-          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Edit" v-bind:to="`/recipes/${recipe.id}/edit`">
+          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" v-bind:to="`/recipes/${recipe.id}/edit`">
             <i class="fi fi-pencil"></i>
           </router-link>
-          <button class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Delete" v-on:click="showRecipeDeleteModal()">
+          <button class="btn btn-sm rounded-circle btn-pink btn-soft-static" v-on:click="showRecipeDeleteModal()">
             <i class="fi fi-thrash"></i>
           </button>
-          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Home" to="/recipes/">
+          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" to="/recipes/">
             <i class="fi fi-home"></i>
           </router-link>
         </div>
@@ -93,7 +93,7 @@
           <div v-if="recipe.tags.length > 0 && !tagManagerAppear">
             <div v-for="tag in recipe.tags" class="d-flex">
               <router-link class="btn btn-sm btn-outline-pink btn-pill m-1 ml-3" v-bind:to="`/tags/${tag.id}`">{{ tag.name }}</router-link>
-              <button class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Delete" v-on:click="destroyRecipeTag(tag)">
+              <button class="btn btn-sm rounded-circle btn-pink btn-soft-static" v-on:click="destroyRecipeTag(tag)">
                 <i class="fi fi-thrash"></i>
               </button>
             </div>

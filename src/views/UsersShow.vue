@@ -34,13 +34,13 @@
         </div>
         <!-- Light pink icon buttons -->
         <div class="d-flex">
-          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Edit" v-bind:to="`/users/edit`">
+          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" v-bind:to="`/users/edit`">
             <i class="fi fi-pencil"></i>
           </router-link>
-          <button class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Delete" v-on:click="showUserDeleteModal()">
+          <button class="btn btn-sm rounded-circle btn-pink btn-soft-static" v-on:click="showUserDeleteModal()">
             <i class="fi fi-thrash"></i>
           </button>
-          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" data-toggle="tooltip" data-placement="bottom" title="Home" to="/recipes/">
+          <router-link class="btn btn-sm rounded-circle btn-pink btn-soft-static" to="/recipes/">
             <i class="fi fi-home"></i>
           </router-link>
         </div>
