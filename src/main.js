@@ -5,7 +5,7 @@ import axios from "axios";
 import Vue2Filters from 'vue2-filters';
 
 axios.defaults.baseURL =
-  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/";
+  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://aqueous-shore-85763.herokuapp.com/";
   
 Vue.config.productionTip = false;
 
